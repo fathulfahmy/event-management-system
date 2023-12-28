@@ -1,0 +1,17 @@
+# vscode
+[core]
+	editor = code --wait --new-window
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+
+# prune
+[fetch]
+    prune = true
+[init]
+	defaultBranch = main

@@ -1,0 +1,7 @@
+{
+  // Git
+  "git.autofetch": true,
+  "git.pruneOnFetch": true,
+  "git.autoStash": true,
+  "git.confirmSync": false,
+}
