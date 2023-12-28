@@ -10,7 +10,7 @@
     <!-- metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boilerplate</title>
+    <title>Sign Up</title>
 
     <!-- bootstrap css cdn -->
     <link
@@ -23,7 +23,10 @@
     <link rel="stylesheet" href="../css/colormodes.css" />
 
     <!-- bootstrap example custom css -->
-    <link rel="stylesheet" href="../assets/bootstrap/examplename/examplename.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/bootstrap/checkout/checkout.css"
+    />
   </head>
   <body>
     <!-- bootstrap color mode toggle -->
@@ -121,61 +124,127 @@
       </ul>
     </div>
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark"
-      aria-label="Tenth navbar example"
-    >
-      <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample08"
-          aria-controls="navbarsExample08"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          class="collapse navbar-collapse justify-content-md-center"
-          id="navbarsExample08"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Centered nav only</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >Dropdown</a
-              >
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    class="navbar navbar-expand-lg navbar-dark bg-dark"
+    aria-label="Tenth navbar example">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarsExample08"
+        aria-controls="navbarsExample08"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div
+        class="collapse navbar-collapse justify-content-md-center"
+        id="navbarsExample08"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#participantprofile.hmtl">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#participantevent.hmtl">Event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#home.html">Sign in</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
     <!-- main content here -->
-    <main></main>
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <h2>Sign Up</h2>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-md-12 col-lg-12">
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+                <!-- first name -->
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+
+                <!-- last name -->
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-12">
+                  <label for="email" class="form-label"
+                    >Email
+                    <span class="text-body-secondary"></span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="you@example.com"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <div class="col-12">
+                  <label for="password" class="form-label"
+                    >Password
+                    <span class="text-body-secondary"></span></label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter your password"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid password.
+                  </div>
+                </div>
+
+              <button class="w-100 btn btn-primary btn-lg" type="submit">
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
 
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -201,7 +270,9 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
+    <!-- link js -->
+    <script src="../assets/bootstrap/checkout/checkout.js"></script>
   </body>
 </html>
