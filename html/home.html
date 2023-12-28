@@ -10,7 +10,7 @@
     <!-- metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boilerplate</title>
+    <title>Home</title>
 
     <!-- bootstrap css cdn -->
     <link
@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="../css/colormodes.css" />
 
     <!-- bootstrap example custom css -->
-    <link rel="stylesheet" href="../assets/bootstrap/examplename/examplename.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/carousel/carousel.css" />
+
+    <link rel="stylesheet" href="../css/home.css" />
   </head>
   <body>
     <!-- bootstrap color mode toggle -->
@@ -121,7 +123,7 @@
       </ul>
     </div>
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      class="fixed-top navbar navbar-expand-lg navbar-dark bg-dark"
       aria-label="Tenth navbar example"
     >
       <div class="container-fluid">
@@ -143,31 +145,16 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Centered nav only</a
-              >
+              <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="participantevent.html">Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              <a class="nav-link" href="profile.html">Profile</a>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >Dropdown</a
-              >
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="signin.html>Sign in</a>
             </li>
           </ul>
         </div>
@@ -175,27 +162,331 @@
     </nav>
 
     <!-- main content here -->
-    <main></main>
+    <main>
+      <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="100%"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>Valorant</h1>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="100%"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>EAFC24</h1>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="100%"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-end">
+                <h1>Counter Strike 2</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Marketing messaging and featurettes
+  ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">Valorant</h2>
+            <p>
+              Join the battle, showcase your skills, and compete with the best
+              in our electrifying Valorant tournament. Are you ready to outplay
+              and outgun your opponents?
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#">Join event &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">EAFC 24</h2>
+            <p>
+              Lace up, compete, and be part of the football gaming history in
+              our heart-pounding EAFC 24 tournament. Are you the next virtual
+              football legend?
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#">Join event &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">Counter Strike 2</h2>
+            <p>
+              Precision, teamwork, and strategy will be your keys to victory in
+              our adrenaline-fueled Counter Strike 2 tournament. Can you lead
+              your team to glory in the ultimate esports showdown?
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#">Join event &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Join the batle.
+              <span class="text-body-secondary">Rise to the challenge.</span>
+            </h2>
+            <p class="lead">
+              Immerse yourself in the thrilling world of Valorant! Explore the
+              strategic depths, showcase your precise aim, and embrace the
+              intensity of tactical gameplay. Unleash your potential and let the
+              Valorant excitement unfold!
+            </p>
+          </div>
+          <div class="col-md-5">
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Beyond the pitch.
+              <span class="text-body-secondary">Forge legacy.</span>
+            </h2>
+            <p class="lead">
+              Experience the passion, camaraderie, and sheer skill of EAFC 24.
+              Beyond the virtual pitch, it's a celebration of football fandom
+              and gaming excellence. Join us in this global championship that
+              transcends boundaries.
+            </p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Enter the battlefield.
+              <span class="text-body-secondary">Unleash dominance.</span>
+            </h2>
+            <p class="lead">
+              Get ready for heart-stopping moments and precision gameplay in our
+              Counter-Strike tournament. Dive into the world where split-second
+              decisions and teamwork make all the difference. Brace yourself for
+              an adrenaline-packed journey into esports intensity!
+            </p>
+          </div>
+          <div class="col-md-5">
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" />
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <!-- /END THE FEATURETTES -->
+      </div>
+      <!-- /.container -->
+    </main>
 
     <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-        </li>
-      </ul>
-      <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
+      <p class="text-center text-body-secondary">&copy; 2023 Uniten Esports Event Management System</p>
     </footer>
     <!-- bootstrap js cdn -->
     <script
