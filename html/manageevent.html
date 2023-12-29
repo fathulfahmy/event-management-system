@@ -16,10 +16,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/colormodes.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
     <!-- 2. bootstrap example css -->
     <link
       rel="stylesheet"
-      href="../assets/bootstrap/examplename/examplename.css"
+      href="../assets/bootstrap/examplename/example.css"
     />
   </head>
   <body>
@@ -27,15 +28,20 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <main class="col-md-9 col-lg-10 px-md-4">
-          <h2 class="my-3">Events</h2>
+          <h2 class="my-3 pb-3">Events</h2>
+
+          <a href="addevent.html">
+            <button class="btn btn-primary">Add event</button>
+          </a>
+
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col" class="col-2">ID</th>
                   <th scope="col">Event name</th>
-                  <th scope="col">Participants</th>
-                  <th scope="col">Quota</th>
+                  <th scope="col" class="col-2">Participants</th>
+                  <th scope="col" class="col-2">Quota</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,7 +77,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/colormodes.js"></script>
+    <script src="../js/navbar.js"></script>
     <!-- 3. bootstrap example js -->
-    <script src="../assets/bootstrap/examplename/examplename.js"></script>
+    <script src="../assets/bootstrap/examplename/example.js"></script>
   </body>
 </html>

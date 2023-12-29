@@ -16,10 +16,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/colormodes.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
     <!-- 2. bootstrap example css -->
     <link
       rel="stylesheet"
-      href="../assets/bootstrap/examplename/examplename.css"
+      href="../assets/bootstrap/examplename/example.css"
     />
   </head>
   <body>
@@ -29,6 +30,16 @@
       <div class="row justify-content-center">
         <main class="col-md-9 col-lg-10 px-md-4">
           <h2 class="my-3">Participants</h2>
+          <form class="d-flex col-3" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search ID"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -38,8 +49,9 @@
                   <th scope="col">Last name</th>
                   <th scope="col">Email</th>
                   <th scope="col" class="col-1">VALO</th>
-                  <th scope="col" class="col-1">CS</th>
+                  <th scope="col" class="col-1">CS2</th>
                   <th scope="col" class="col-1">EAFC</th>
+                  <th scope="col" class="col-1">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,6 +63,7 @@
                   <td>Yes</td>
                   <td>No</td>
                   <td>Yes</td>
+                  <td><a href="" class="btn btn-danger">Delete</a></td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -60,6 +73,7 @@
                   <td>Yes</td>
                   <td>No</td>
                   <td>Yes</td>
+                  <td><a href="" class="btn btn-danger">Delete</a></td>
                 </tr>
                 <tr>
                   <td>3</td>
@@ -69,6 +83,7 @@
                   <td>Yes</td>
                   <td>No</td>
                   <td>Yes</td>
+                  <td><a href="" class="btn btn-danger">Delete</a></td>
                 </tr>
               </tbody>
             </table>
@@ -84,7 +99,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/colormodes.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/formvalidation.js"></script>
     <!-- 3. bootstrap example js -->
-    <script src="../assets/bootstrap/examplename/examplename.js"></script>
+    <script src="../assets/bootstrap/examplename/example.js"></script>
   </body>
 </html>

@@ -16,10 +16,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/colormodes.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
     <!-- 2. bootstrap example css -->
     <link
       rel="stylesheet"
-      href="../assets/bootstrap/examplename/examplename.css"
+      href="../assets/bootstrap/examplename/example.css"
     />
   </head>
   <body>
@@ -35,16 +36,19 @@
             <form class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-12">
-                  <label for="email" class="form-label">Email </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    placeholder="you@example.com"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Please enter a valid email address.
+                  <label for="username" class="form-label">Username</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">@</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      placeholder="Username"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Your username is required.
+                    </div>
                   </div>
                 </div>
 
@@ -82,7 +86,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/colormodes.js"></script>
+    <script src="../js/formvalidation.js"></script>
     <!-- 3. bootstrap example js -->
-    <script src="../js/signup.js"></script>
+    <script src="../assets/bootstrap/example/example.js"></script>
   </body>
 </html>
