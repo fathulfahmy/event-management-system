@@ -18,10 +18,7 @@
     <link rel="stylesheet" href="../css/colormodes.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <!-- 2. bootstrap example css -->
-    <link
-      rel="stylesheet"
-      href="../assets/bootstrap/examplename/example.css"
-    />
+    <link rel="stylesheet" href="../assets/bootstrap/examplename/example.css" />
   </head>
   <body>
     <!-- 4. main content start -->
@@ -99,7 +96,7 @@
                 <div class="col-12">
                   <label for="password" class="form-label">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     class="form-control"
                     id="password"
                     placeholder=""
@@ -111,17 +108,77 @@
                 </div>
 
                 <div class="col-12">
-                  <label for="password" class="form-label">Password</label>
+                  <label for="retypepassword" class="form-label"
+                    >Re-type password</label
+                  >
                   <input
                     type="text"
                     class="form-control"
-                    id="password"
+                    id="retypepassword"
                     placeholder=""
                     required
                   />
                   <div class="invalid-feedback">Passwords do not match.</div>
                 </div>
               </div>
+
+              <hr class="my-4" />
+
+              <h3 class="my-3">Events</h3>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Event name</th>
+                      <th scope="col" class="col-2">Participants</th>
+                      <th scope="col" class="col-2">Quota</th>
+                      <th scope="col" class="col-2">Joined</th>
+                      <th scope="col" class="col-1">Join</th>
+                      <th scope="col" class="col-1">Leave</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Valorant</td>
+                      <td>30</td>
+                      <td>60</td>
+                      <td>Yes</td>
+                      <td>
+                        <button class="btn btn-success" href="">Join</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" href="">Leave</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Counter-Strike 2</td>
+                      <td>30</td>
+                      <td>60</td>
+                      <td>No</td>
+                      <td>
+                        <button class="btn btn-success" href="">Join</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" href="">Leave</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>EA Sports FC 24</td>
+                      <td>30</td>
+                      <td>60</td>
+                      <td>No</td>
+                      <td>
+                        <button class="btn btn-success" href="">Join</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" href="">Leave</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <hr class="my-4" />
 
               <button class="my-4 w-100 btn btn-primary btn-lg" type="submit">
                 Update

@@ -18,10 +18,7 @@
     <link rel="stylesheet" href="../css/colormodes.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <!-- 2. bootstrap example css -->
-    <link
-      rel="stylesheet"
-      href="../assets/bootstrap/examplename/example.css"
-    />
+    <link rel="stylesheet" href="../assets/bootstrap/examplename/example.css" />
   </head>
   <body>
     <!-- 4. main content start -->
@@ -35,24 +32,19 @@
           <div class="col-md-7 col-lg-8">
             <form class="needs-validation" novalidate>
               <div class="row g-3">
-                <div class="col-sm-6">
-                  <label for="eventid" class="form-label">Event Id</label>
-                  <div class="input-group has-validation">
-                    <span class="input-group-text">ID</span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="eventid"
-                      placeholder=""
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please enter a valid event id.
-                    </div>
-                  </div>
+                <div class="col-sm-10">
+                  <label for="eventname" class="form-label">Event name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="eventname"
+                    placeholder=""
+                    required
+                  />
+                  <div class="invalid-feedback">Event name is required.</div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                   <label for="quota" class="form-label">Quota</label>
                   <input
                     type="number"
@@ -63,18 +55,6 @@
                     required
                   />
                   <div class="invalid-feedback">Event quota is required.</div>
-                </div>
-
-                <div class="col-12">
-                  <label for="eventname" class="form-label">Event name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="eventname"
-                    placeholder=""
-                    required
-                  />
-                  <div class="invalid-feedback">Event name is required.</div>
                 </div>
               </div>
 
