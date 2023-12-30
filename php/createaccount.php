@@ -50,17 +50,19 @@
                 </main>
             </div>
         <?php
+        header( "refresh:5;url=signin.php" );
         } else {
         ?>
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
                         <h2>Error</h2>
-                        <p>Failed to create your account. Redirecting you to signin page...</p>
+                        <p>Failed to create your account. Redirecting you to signup page...</p>
                     </div>
                 </main>
             </div>
     <?php
+    header( "refresh:5;url=signup.php" );
         }
     }
     ?>
