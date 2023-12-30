@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col=sm-2">
                                 <label for="participantid" class="form-label">Participant ID</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">ID</span>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-10">
+                            <div class="col=sm-10">
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>

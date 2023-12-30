@@ -35,6 +35,7 @@
             </main>
         </div>
     <?php
+        header("refresh:5;url=profile.php");
     } else {
     ?>
         <div class="container">
@@ -46,12 +47,12 @@
             </main>
         </div>
     <?php
+        header("refresh:5;url=profile.php");
     }
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../js/colormodes.js"></script>
-    <script src="../js/redirecttoprofile.js"></script>
 </body>
 
 </html>
