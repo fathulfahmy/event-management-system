@@ -5,7 +5,7 @@ const retypePasswordMsg = document.getElementById("retypepasswordmsg");
 const validatePassword = () => {
   if (
     password.value !== "" &&
-    retypePassword !== "" &&
+    retypePassword.value !== "" &&
     password.value !== retypePassword.value
   ) {
     retypePassword.setCustomValidity("Passwords do not match.");
