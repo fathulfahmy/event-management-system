@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- document title -->
     <title>User Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/colormodes.css" />
@@ -13,16 +12,25 @@
 
 <body>
 
-    <!-- sql display -->
+    <!-- display data from participants table -->
     <?php
     include "connect.php";
-    $participantid = 0001;
-    $sql = "SELECT * FROM participants WHERE participantid = $participantid";
+    $userid = 0001;
+
+    // sql
+    $sql = "SELECT * FROM participants WHERE participantid = $userid";
     $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
     $row = mysqli_fetch_array($result, MYSQLI_NUM);
+
+    // variables
+    $participantid = $row[0];
+    $firstname = $row[1];
+    $lastname = $row[2];
+    $username = $row[3];
+    $email = $row[4];
+    $password = $row[5];
     ?>
 
-    <!-- main content start -->
     <div class="container">
         <main>
             <div class="py-5 text-center">
@@ -31,7 +39,7 @@
 
             <div class="row justify-content-center g-5">
                 <div class="col-md-7 col-lg-8">
-                    <!-- submit to sql update -->
+                    <!-- submit to updateprofile.php -->
                     <form class="needs-validation" novalidate method="post" action="updateprofile.php">
                         <div class="row g-3">
 
@@ -39,7 +47,8 @@
 
                             <div class="col-sm-6">
                                 <label for="firstname" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $row[1] ?>" placeholder="<?php echo $row[1] ?>" required />
+                                <!-- response 1 -->
+                                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="<?php echo $firstname ?>" required />
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
@@ -47,7 +56,8 @@
 
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row[2] ?>" placeholder="<?php echo $row[2] ?>" required />
+                                <!-- response 2 -->
+                                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="<?php echo $lastname ?>" required />
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
@@ -57,9 +67,10 @@
                                 <label for="participantid" class="form-label">Participant ID</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">ID</span>
-                                    <input type="text" class="form-control" id="participantid" name="participantid" value="<?php echo $row[0] ?>" required readonly />
+                                    <!-- response 3 -->
+                                    <input type="text" class="form-control" id="participantid" name="participantid" value="<?php echo $participantid ?>" required readonly />
                                     <div class="invalid-feedback">
-                                        Your username is required.
+                                        Participant ID is required.
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +79,8 @@
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $row[3] ?>" required readonly />
+                                    <!-- response 4 -->
+                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" required readonly />
                                     <div class="invalid-feedback">
                                         Your username is required.
                                     </div>
@@ -77,7 +89,8 @@
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email </label>
-                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $row[4] ?>" placeholder="<?php echo $row[4] ?>" required />
+                                <!-- response 5 -->
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" placeholder="<?php echo $email ?>" required />
                                 <div class="invalid-feedback">
                                     Please enter a valid email address.
                                 </div>
@@ -98,68 +111,77 @@
                             </div>
                         </div>
 
-                        <hr class="my-4" />
-
-                        <h3 class="my-3">Events</h3>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Event name</th>
-                                        <th scope="col" class="col-2">Participants</th>
-                                        <th scope="col" class="col-2">Quota</th>
-                                        <th scope="col" class="col-2">Joined</th>
-                                        <th scope="col" class="col-1">Join</th>
-                                        <th scope="col" class="col-1">Leave</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Valorant</td>
-                                        <td>30</td>
-                                        <td>60</td>
-                                        <td>Yes</td>
-                                        <td>
-                                            <button class="btn btn-success">Join</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger">Leave</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Counter-Strike 2</td>
-                                        <td>30</td>
-                                        <td>60</td>
-                                        <td>No</td>
-                                        <td>
-                                            <button class="btn btn-success">Join</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger">Leave</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>EA Sports FC 24</td>
-                                        <td>30</td>
-                                        <td>60</td>
-                                        <td>No</td>
-                                        <td>
-                                            <button class="btn btn-success">Join</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger">Leave</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <hr class="my-4" />
-
                         <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" id="submitbtn">
                             Update
                         </button>
                     </form>
+
+                    <hr class="my-4" />
+
+                    <h3 class="my-3" id="events">Events</h3>
+                    <!-- copy pasta joinevent.php -->
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Event name</th>
+                                    <th scope="col" class="col-2">Joined</th>
+                                    <th scope="col" class="col-1">Join</th>
+                                    <th scope="col" class="col-1">Leave</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <?php
+                                // display events sql
+                                $eventsql = "SELECT * FROM events";
+                                $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+
+                                // loop events
+                                while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_NUM)) {
+                                    $joined = 'No';
+                                    $eventid = $eventrow[0];
+                                    $eventname = $eventrow[1];
+                                    $quota = $eventrow[2];
+
+                                    // existing participant sql
+                                    $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $userid";
+                                    $participantresult = mysqli_query($con, $participantsql);
+
+                                    // existing participant response
+                                    if (mysqli_num_rows($participantresult) > 0) {
+                                        $joined = 'Yes';
+                                    }
+
+                                    // display events response
+                                    echo '
+                                    <tr>
+                                      <td>' . $eventname . '</td>
+                                      <td>' . $joined . '</td>';
+
+                                    // quota sql
+                                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                                    $registrationresult = mysqli_query($con, $registrationsql);
+
+                                    // quota response
+                                    if (mysqli_num_rows($registrationresult) < $quota) {
+                                        echo '<td><a class="btn btn-success" href="insertregistration2.php?eventid=' . $eventid . '&participantid=' . $userid . '">Join</a></td>';
+                                    } else {
+                                        echo '<td><button type="button" class="btn btn-secondary" disabled>FULL</button></td>';
+                                    }
+
+                                    echo '
+                                      <td><a class="btn btn-danger" href="deleteregistration2.php?eventid=' . $eventid . '&participantid=' . $userid . '">Leave</a></td>
+                                    </tr>
+                                    ';
+                                };
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
             </div>
         </main>

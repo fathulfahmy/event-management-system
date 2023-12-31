@@ -13,22 +13,26 @@
 <body>
     <?php
     include "connect.php";
+
+    // variables
     $firstname = @$_POST["firstname"];
     $lastname = @$_POST["lastname"];
     $username = @$_POST["username"];
     $email = @$_POST["email"];
     $password = @$_POST["password"];
 
-    $valididquery = "SELECT * FROM participants WHERE username = '$username'";
-    $valididresult = mysqli_query($con, $valididquery);
+    // existing data sql
+    $usernamesql = "SELECT * FROM participants WHERE username = '$username'";
+    $usernameresult = mysqli_query($con, $usernamesql);
 
-    if (mysqli_num_rows($valididresult) > 0) {
+    if (mysqli_num_rows($usernameresult) > 0) {
     ?>
+        <!-- existing data response 1 -->
         <div class="container">
             <main>
                 <div class="py-5 text-center">
                     <h2>Error</h2>
-                    <p>Data already exist.</p>
+                    <p>Username already exist. Redirecting you to signup page...</p>
                 </div>
             </main>
         </div>
@@ -36,11 +40,15 @@
         <?php
         header("refresh:5;url=signup.php");
     } else {
+        // existing data response 2
+
+        // insert participant sql
         $insertsql = "INSERT INTO participants VALUES (null, '$firstname', '$lastname','$username', '$email', '$password')";
-        $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due t0" . mysqli_error($con));
+        $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to" . mysqli_error($con));
 
         if ($insertresult) {
         ?>
+            <!-- insert participant response 1 -->
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
@@ -50,9 +58,10 @@
                 </main>
             </div>
         <?php
-        header( "refresh:5;url=signin.php" );
+            header("refresh:5;url=signin.php");
         } else {
         ?>
+            <!-- insert participant response 2 -->
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
@@ -62,7 +71,7 @@
                 </main>
             </div>
     <?php
-    header( "refresh:5;url=signup.php" );
+            header("refresh:5;url=signup.php");
         }
     }
     ?>

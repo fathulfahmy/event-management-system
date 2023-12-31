@@ -14,16 +14,19 @@
     <?php
     include "connect.php";
 
+    // variables
     $participantid = $_POST["participantid"];
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    // sql
     $sql = "UPDATE participants SET firstname = '$firstname', lastname = '$lastname', 
     email = '$email', password = '$password' WHERE participantid = $participantid";
     $result = mysqli_query($con, $sql);
 
+    // response
     if ($result) {
     ?>
         <div class="container">
