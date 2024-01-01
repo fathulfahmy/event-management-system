@@ -125,7 +125,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Event name</th>
-                                    <th scope="col" class="col-2">Joined</th>
+                                    <th scope="col" class="col-1 text-center">Registered</th>
+                                    <th scope="col" class="col-2 text-center">Status</th>
                                     <th scope="col" class="col-1">Join</th>
                                     <th scope="col" class="col-1">Leave</th>
                                 </tr>
@@ -140,7 +141,7 @@
 
                                 // loop events
                                 while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_NUM)) {
-                                    $joined = 'No';
+                                    $joined = 'Not Registered';
                                     $eventid = $eventrow[0];
                                     $eventname = $eventrow[1];
                                     $quota = $eventrow[2];
@@ -151,18 +152,19 @@
 
                                     // existing participant response
                                     if (mysqli_num_rows($participantresult) > 0) {
-                                        $joined = 'Yes';
+                                        $joined = 'Registered';
                                     }
+
+                                    // quota sql
+                                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                                    $registrationresult = mysqli_query($con, $registrationsql);
 
                                     // display events response
                                     echo '
                                     <tr>
                                       <td>' . $eventname . '</td>
-                                      <td>' . $joined . '</td>';
-
-                                    // quota sql
-                                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                                    $registrationresult = mysqli_query($con, $registrationsql);
+                                      <td class="text-center">' . mysqli_num_rows($registrationresult) . ' / ' . $quota . '</td>
+                                      <td class="text-center">' . $joined . '</td>';
 
                                     // quota response
                                     if (mysqli_num_rows($registrationresult) < $quota) {
