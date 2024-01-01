@@ -38,7 +38,7 @@
             <tbody>
               <?php
               include "connect.php";
-
+              //
               //display event sql
               $manageeventsql = "SELECT * FROM events";
               $result = mysqli_query($con, $manageeventsql) or die("Unable to execute sql");

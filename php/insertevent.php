@@ -18,7 +18,7 @@
 
     $inserteventsql = "INSERT INTO events VALUES (null, '$eventName', '$quota' )";
     $result = mysqli_query($con, $inserteventsql);
-
+    //
     if ($result) {
         ?>
             <!-- insert participant response 1 -->
