@@ -14,10 +14,10 @@
     <?php
     include "../connect.php";
 
-    $eventName = @$_POST["eventName"];
-    $quota = @$_POST["quota"];
+    $eventname = $_POST["eventname"];
+    $quota = $_POST["quota"];
 
-    $inserteventsql = "INSERT INTO events VALUES (null, '$eventName', '$quota' )";
+    $inserteventsql = "INSERT INTO events VALUES (null, '$eventname', '$quota' )";
     $result = mysqli_query($con, $inserteventsql);
 
     if ($result) {
