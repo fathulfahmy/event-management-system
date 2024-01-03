@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../css/colormodes.css" />
-  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../../css/colormodes.css" />
+  <link rel="stylesheet" href="../../css/navbar.css" />
 </head>
 
 <body>
@@ -19,8 +19,8 @@
 
       <div class="row justify-content-center g-5">
         <div class="col-md-7 col-lg-8">
-          <!-- submit to createaccount.php -->
-          <form class="needs-validation" method="POST" action="createaccount.php" novalidate>
+          <!-- submit to signup_insert.php -->
+          <form class="needs-validation" method="POST" action="signup_insert.php" novalidate>
             <div class="row g-3">
               <div class="col-sm-6">
                 <label for="firstname" class="form-label">First name</label>
@@ -77,7 +77,7 @@
             </button>
           </form>
           <p class="text-center">
-            Already have an account? <a href="signin.html">Sign In</a>
+            Already have an account? <a href="../signin/signin.php">Sign In</a>
           </p>
         </div>
       </div>
@@ -85,9 +85,10 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script src="../js/colormodes.js"></script>
-  <script src="../js/validateform.js"></script>
-  <script src="../js/validatepassword.js"></script>
+  <script src="../../js/colormodes.js"></script>
+  <script src="../../js/navbar.js"></script>
+  <script src="../../js/validateform.js"></script>
+  <script src="../../js/validatepassword.js"></script>
 </body>
 
 </html>
