@@ -44,7 +44,7 @@
                 </main>
             </div>
         <?php
-            header("refresh:5;profile.php");
+            header("refresh:3;profile.php");
             exit;
         } else {
         ?>

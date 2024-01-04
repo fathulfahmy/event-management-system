@@ -20,18 +20,24 @@
         $sessionusername = $_SESSION["username"];
         $role = $_SESSION["role"];
 
-        // get participant information from participants table
-        $sql = "SELECT * FROM participants WHERE participantid = $userid";
-        $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
-        $row = mysqli_fetch_array($result, MYSQLI_NUM);
+        if ($role == "participant") {
+            // get participant information from participants table
+            $sql = "SELECT * FROM participants WHERE participantid = $userid";
+            $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
+            $row = mysqli_fetch_array($result, MYSQLI_BOTH);
+        } else {
+            // get admin information from admins table
+            $sql = "SELECT * FROM admins WHERE adminid = $userid";
+            $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
+            $row = mysqli_fetch_array($result, MYSQLI_BOTH);
+        }
 
         // variables
-        $participantid = $row[0];
-        $firstname = $row[1];
-        $lastname = $row[2];
-        $username = $row[3];
-        $email = $row[4];
-        $password = $row[5];
+        $firstname = $row["firstname"];
+        $lastname = $row["lastname"];
+        $username = $row["username"];
+        $email = $row["email"];
+        $password = $row["password"];
     ?>
 
         <div class="container">
@@ -63,19 +69,19 @@
                                     </div>
                                 </div>
 
-                                <div class="col=sm-2">
+                                <div class="col-lg-2">
                                     <label for="participantid" class="form-label">Participant ID</label>
                                     <div class="input-group has-validation">
                                         <span class="input-group-text">ID</span>
                                         <!-- response 3 -->
-                                        <input type="text" class="form-control" id="participantid" name="participantid" value="<?php echo $participantid ?>" required readonly />
+                                        <input type="text" class="form-control" id="userid" name="userid" value="<?php echo $userid ?>" required readonly />
                                         <div class="invalid-feedback">
                                             Participant ID is required.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col=sm-10">
+                                <div class="col-lg-10">
                                     <label for="username" class="form-label">Username</label>
                                     <div class="input-group has-validation">
                                         <span class="input-group-text">@</span>
@@ -116,22 +122,23 @@
                             </button>
                         </form>
 
-                        <hr class="my-4" />
+                        <?php if ($role == "participant") { ?>
+                            <hr class="my-4" />
 
-                        <h3 class="my-3" id="events">Events</h3>
-                        <!-- copy pasta registration.php -->
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Event name</th>
-                                        <th scope="col" class="col-2">Joined</th>
-                                        <th scope="col" class="col-1">Join</th>
-                                        <th scope="col" class="col-1">Leave</th>
-                                    </tr>
-                                </thead>
+                            <h3 class="my-3" id="events">Events</h3>
+                            <!-- copy pasta registration.php -->
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Event name</th>
+                                            <th scope="col" class="col-2">Joined</th>
+                                            <th scope="col" class="col-1">Join</th>
+                                            <th scope="col" class="col-1">Leave</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody>
+                                    <tbody>
 
                                     <?php
                                     // display all events
@@ -155,7 +162,7 @@
                                             <tr>
                                               <td>' . $eventname . '</td>
                                               <td>' . $joined . '</td>
-                                        ';
+                                            ';
 
                                         // compare number of rows with quota
                                         $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
@@ -168,15 +175,15 @@
                                         }
 
                                         echo '
-                                      <td><a class="btn btn-danger" href="registration_delete.php?eventid=' . $eventid . '&participantid=' . $userid . '">Leave</a></td>
-                                    </tr>
-                                    ';
+                                              <td><a class="btn btn-danger" href="registration_delete.php?eventid=' . $eventid . '&participantid=' . $userid . '">Leave</a></td>
+                                            </tr>
+                                            ';
                                     };
+                                }
                                     ?>
-                                </tbody>
-                            </table>
-                        </div>
-
+                                    </tbody>
+                                </table>
+                            </div>
 
                     </div>
                 </div>

@@ -14,45 +14,24 @@
     <?php
     include "../connect.php";
 
-    // from signin.php
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    if (isset($_POST["username"])) {
+        // from signin.php
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-    // check username on admins table
-    $adminsql = "SELECT * FROM admins WHERE username = '$username'";
-    $adminresult = mysqli_query($con, $adminsql);
+        // check username on admins table
+        $adminsql = "SELECT * FROM admins WHERE username = '$username'";
+        $adminresult = mysqli_query($con, $adminsql);
 
-    if (mysqli_num_rows($adminresult) > 0) {
-        while ($adminrow = mysqli_fetch_array($adminresult, MYSQLI_BOTH)) {
-            if ($password == $adminrow["password"]) {
-                // user is admin and password match
-                session_start();
-                $_SESSION["userid"] = $adminrow["adminid"];
-                $_SESSION["username"] = $username;
-                $_SESSION["role"] = "admin";
-                header("location:../home/home.php");
-                exit;
-            } else {
-                echo "Wrong password. Redirecting you back...";
-                header("refresh:3;url='signin.php'");
-                exit;
-            }
-        }
-    } else {
-
-        // check username on participants table
-        $participantsql = "SELECT * FROM participants WHERE username = '$username'";
-        $participantresult = mysqli_query($con, $participantsql);
-
-        if (mysqli_num_rows($participantresult) > 0) {
-            while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
-                if ($password == $participantrow["password"]) {
-                    // user is participant and password match
+        if (mysqli_num_rows($adminresult) > 0) {
+            while ($adminrow = mysqli_fetch_array($adminresult, MYSQLI_BOTH)) {
+                if ($password == $adminrow["password"]) {
+                    // user is admin and password match
                     session_start();
-                    $_SESSION["userid"] = $participantrow["participantid"];
+                    $_SESSION["userid"] = $adminrow["adminid"];
                     $_SESSION["username"] = $username;
-                    $_SESSION["role"] = "participant";
-                    header("location: ../home/home.php");
+                    $_SESSION["role"] = "admin";
+                    header("location:../home/home.php");
                     exit;
                 } else {
                     echo "Wrong password. Redirecting you back...";
@@ -61,9 +40,32 @@
                 }
             }
         } else {
-            echo "Username  does not exist. Redirecting you back...";
-            header("refresh:3;url='signin.php'");
-            exit;
+
+            // check username on participants table
+            $participantsql = "SELECT * FROM participants WHERE username = '$username'";
+            $participantresult = mysqli_query($con, $participantsql);
+
+            if (mysqli_num_rows($participantresult) > 0) {
+                while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
+                    if ($password == $participantrow["password"]) {
+                        // user is participant and password match
+                        session_start();
+                        $_SESSION["userid"] = $participantrow["participantid"];
+                        $_SESSION["username"] = $username;
+                        $_SESSION["role"] = "participant";
+                        header("location: ../home/home.php");
+                        exit;
+                    } else {
+                        echo "Wrong password. Redirecting you back...";
+                        header("refresh:3;url='signin.php'");
+                        exit;
+                    }
+                }
+            } else {
+                echo "Username  does not exist. Redirecting you back...";
+                header("refresh:3;url='signin.php'");
+                exit;
+            }
         }
     }
     ?>

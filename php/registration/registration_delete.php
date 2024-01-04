@@ -32,7 +32,7 @@
             <main>
                 <div class="py-5 text-center">
                     <h2>Error</h2>
-                    <p>Unauthorized access. Redirecting you to signin page...</p>
+                    <p>Unauthorized access.</p>
                     <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
                 </div>
             </main>

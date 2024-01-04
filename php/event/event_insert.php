@@ -13,39 +13,78 @@
 <body>
     <?php
     include "../connect.php";
+    session_start();
+    if (isset($_SESSION["username"])) :
+        $userid = $_SESSION["userid"];
+        $sessionusername = $_SESSION["username"];
+        $role = $_SESSION["role"];
 
-    $eventname = $_POST["eventname"];
-    $quota = $_POST["quota"];
+        if ($role == "admin") :
 
-    $inserteventsql = "INSERT INTO events VALUES (null, '$eventname', '$quota' )";
-    $result = mysqli_query($con, $inserteventsql);
+            // from event.php
+            $eventname = $_POST["eventname"];
+            $quota = $_POST["quota"];
 
-    if ($result) {
+            // insert new event into events table
+            $sql = "INSERT INTO events VALUES (null, '$eventname', '$quota' )";
+            $result = mysqli_query($con, $sql);
+
+            if ($result) :
     ?>
-        <div class="container">
-            <main>
-                <div class="py-5 text-center">
-                    <h2>Insert Event</h2>
-                    <p>Event successfully inserted. Redirecting you to manage event page...</p>
+                <div class="container">
+                    <main>
+                        <div class="py-5 text-center">
+                            <h2>Added</h2>
+                            <p>Successfully added event. Redirecting you back...</p>
+                        </div>
+                    </main>
                 </div>
-            </main>
-        </div>
-    <?php
-        header("refresh:5;url=event.php");
-    } else {
-    ?>
+            <?php
+                header("refresh:3;url=event.php");
+                exit;
+            else :
+            ?>
+                <div class="container">
+                    <main>
+                        <div class="py-5 text-center">
+                            <h2>Error</h2>
+                            <p>Failed to add event. Redirecting you back...</p>
+                        </div>
+                    </main>
+                </div>
+            <?php
+                header("refresh:3;url=event.php");
+                exit;
+            endif;
+        else : ?>
+
+            <div class="container">
+                <main>
+                    <div class="py-5 text-center">
+                        <h2>Error</h2>
+                        <p>Restricted to admin. Redirecting you to homepage...</p>
+                    </div>
+                </main>
+            </div>
+
+        <?php
+            header("refresh:3;url='../home/home.php'");
+            exit;
+        endif;
+    else :
+        ?>
+
         <div class="container">
             <main>
                 <div class="py-5 text-center">
                     <h2>Error</h2>
-                    <p>Failed to add event. Redirecting you to manage event...</p>
+                    <p>Unauthorized access.</p>
+                    <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
                 </div>
             </main>
         </div>
-    <?php
-        header("refresh:5;url=event.php");
-    }
-    ?>
+
+    <?php endif; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../../js/colormodes.js"></script>
