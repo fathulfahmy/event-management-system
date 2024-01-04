@@ -22,7 +22,6 @@
 
     if ($result) {
     ?>
-        <!-- insert participant response 1 -->
         <div class="container">
             <main>
                 <div class="py-5 text-center">
@@ -35,7 +34,6 @@
         header("refresh:5;url=event.php");
     } else {
     ?>
-        <!-- insert participant response 2 -->
         <div class="container">
             <main>
                 <div class="py-5 text-center">

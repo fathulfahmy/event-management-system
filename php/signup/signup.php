@@ -19,10 +19,10 @@
 
       <div class="row justify-content-center g-5">
         <div class="col-md-7 col-lg-8">
-          <!-- submit to signup_insert.php -->
           <form class="needs-validation" method="POST" action="signup_insert.php" novalidate>
             <div class="row g-3">
               <div class="col-sm-6">
+
                 <label for="firstname" class="form-label">First name</label>
                 <input type="text" class="form-control" id="firstname" placeholder="" value="" name="firstname" required />
                 <div class="invalid-feedback">

@@ -13,23 +13,55 @@
 <body>
     <?php
     include "../connect.php";
-    // variables
-    $eventid = $_GET["eventid"];
-    $participantid = $_GET["participantid"];
+    session_start();
+    if (isset($_SESSION["username"])) :
+        $userid = $_SESSION["userid"];
+        $sessionusername = $_SESSION["username"];
+        $role = $_SESSION["role"];
 
-    // sql
-    $sql = "INSERT INTO registrations VALUES(null, '$participantid', '$eventid')";
-    $result = mysqli_query($con, $sql) or die("Error in inserting data due to " . mysqli_error($con));
+        // from registration.php
+        $eventid = $_GET["eventid"];
+        $participantid = $_GET["participantid"];
 
-    // response
-    if ($result) {
+        // check participant on registrations table
+        $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $participantid";
+        $participantresult = mysqli_query($con, $participantsql);
+        if (mysqli_num_rows($participantresult) == 0) {
 
-        echo "You have successfully joined the event.";
-        header("location:registration.php");
-    } else {
-        echo "Failed to join the event.";
-        header("location:registration.php");
-    }
+            // get quota from events table
+            $eventsql = "SELECT * FROM events WHERE eventid = $eventid";
+            $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+            while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
+                $quota = $eventrow["quota"];
+            }
+
+            // compare number of rows in registrations table with quota
+            $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+            $registrationresult = mysqli_query($con, $registrationsql);
+            if (mysqli_num_rows($registrationresult) < $quota) {
+
+                // insert participant into registrations table
+                $insertsql = "INSERT INTO registrations VALUES(null, '$participantid', '$eventid')";
+                $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to " . mysqli_error($con));
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            }
+        } else {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+    else : ?>
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <h2>Error</h2>
+                    <p>Unauthorized access.</p>
+                    <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
+                </div>
+            </main>
+        </div>
+    <?php endif; ?>
     ?>
 
     <script src="../../js/colormodes.js"></script>
