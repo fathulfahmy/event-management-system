@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    if (isset($_POST["username"])) {
+    if (isset($_POST["submit"])) :
         include "../connect.php";
 
         // from signup.php
@@ -33,8 +33,8 @@
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
-                        <h2>Error</h2>
-                        <p>Username already exist. Redirecting you back...</p>
+                        <h2>Username already exist</h2>
+                        <p>Please signin or try again. Redirecting you to signup page...</p>
                     </div>
                 </main>
             </div>
@@ -44,44 +44,71 @@
             exit;
         else :
 
-            // insert new user into participants table
-            $insertsql = "INSERT INTO participants VALUES (null, '$firstname', '$lastname','$username', '$email', '$password')";
-            $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to" . mysqli_error($con));
+            // check email on participants table
+            $emailsql = "SELECT * FROM participants WHERE email = '$email'";
+            $emailresult = mysqli_query($con, $emailsql);
 
-            if ($insertresult) :
+            // email already exist
+            if (mysqli_num_rows($emailresult) > 0) :
             ?>
 
                 <div class="container">
                     <main>
                         <div class="py-5 text-center">
-                            <h2>Sign Up</h2>
-                            <p>Your account has been created. Redirecting you to signin page...</p>
+                            <h2>Email already exist</h2>
+                            <p>Please signin or try again. Redirecting you to signup page...</p>
                         </div>
                     </main>
                 </div>
 
-            <?php
-                header("refresh:3;url=../signin/signin.php");
-                exit;
-            else :
-                // insert operation is not successful
-            ?>
-
-                <div class="container">
-                    <main>
-                        <div class="py-5 text-center">
-                            <h2>Error</h2>
-                            <p>Failed to create your account. Redirecting you back...</p>
-                        </div>
-                    </main>
-                </div>
-
-    <?php
+                <?php
                 header("refresh:3;url=signup.php");
                 exit;
+            else :
+                // insert new user into participants table
+                $insertsql = "INSERT INTO participants VALUES (null, '$firstname', '$lastname','$username', '$email', '$password')";
+                $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to" . mysqli_error($con));
+
+                if ($insertresult) :
+                ?>
+
+                    <div class="container">
+                        <main>
+                            <div class="py-5 text-center">
+                                <h2>Success</h2>
+                                <p>Your account has been created. Redirecting you to signin page...</p>
+                            </div>
+                        </main>
+                    </div>
+
+                <?php
+                    header("refresh:3;url=../signin/signin.php");
+                    exit;
+                else :
+                    // insert operation is not successful
+                ?>
+
+                    <div class="container">
+                        <main>
+                            <div class="py-5 text-center">
+                                <h2>Error</h2>
+                                <p>Failed to create your account. Redirecting you to signup page...</p>
+                            </div>
+                        </main>
+                    </div>
+
+    <?php
+                    header("refresh:3;url=signup.php");
+                    exit;
+                endif;
+
             endif;
+
         endif;
-    }
+
+    else :
+        header("location: signup.php");
+    endif;
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

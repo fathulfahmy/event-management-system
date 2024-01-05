@@ -25,13 +25,12 @@
           </li>
 
           <?php
-          include "../connect.php";
           session_start();
-          if (isset($_SESSION["username"])) {
-            $role = $_SESSION["role"];
-
-            if ($role == "participant") {
+          if (isset($_SESSION["role"])) :
+            if ($_SESSION["role"] == "participant") :
           ?>
+
+              <!-- participant -->
               <li class="nav-item">
                 <a class="nav-link" href="../registration/registration.php">Join Event</a>
               </li>
@@ -41,14 +40,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
-            <?php
-            } else {
-            ?>
+
+            <?php else : ?>
+
+              <!-- admin -->
               <li class="nav-item">
                 <a class="nav-link" href="../event/event.php">Manage Event</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="../participant/participant.php">Manage Participant</a>
+                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../profile/profile.php">Profile</a>
@@ -56,35 +56,32 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
+
             <?php
-            }
-          } else {
-            ?>
+            endif;
+          else : ?>
+
+            <!-- visitor -->
             <li class="nav-item">
               <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../signin/signin.php">Sign In</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+            </li>
 
-          <?php
-          }
-          ?>
-
-
+          <?php endif; ?>
         </ul>
-
       </div>
     </div>
   </nav>
+
   <?php
-
-  if (isset($_SESSION["username"])) :
-    $userid = $_SESSION["userid"];
-    $sessionusername = $_SESSION["username"];
-    $role = $_SESSION["role"];
-
-    if ($role == "admin") :
+  if (isset($_SESSION["role"])) :
+    if ($_SESSION["role"] == "admin") :
+      include "../connect.php";
   ?>
 
       <div class="container-fluid">
@@ -92,10 +89,9 @@
           <main class="col-md-9 col-lg-10 px-md-4">
             <h2 class="my-3">Participants</h2>
 
-            <!-- search button -->
-            <form class="d-flex col-3" role="search" method="post" action="participant_search.php">
+            <form class="d-flex col-3" role="search" method="get" action="participant.php">
               <input class="form-control me-2" type="search" placeholder="Search" name="searchkey" />
-              <button class="btn btn-outline-success" type="submit">
+              <button class="btn btn-outline-success" type="submit" name="submit">
                 Search
               </button>
             </form>
@@ -112,47 +108,61 @@
                     <th scope="col">Events</th>
                   </tr>
                 </thead>
-                <tbody>
 
-                  <?php
+                <?php
+                if (isset($_GET["submit"])) {
+                  // display searched participant
+                  $searchkey = $_GET["searchkey"];
+                  $participantsql = "SELECT * FROM participants WHERE participantid LIKE '%$searchkey%' OR firstname LIKE '%$searchkey%' OR lastname LIKE '%$searchkey%' OR email LIKE '%$searchkey%'";
+                } else {
+                  // display all participants
                   $participantsql = "SELECT * FROM participants";
-                  $participantresult = mysqli_query($con, $participantsql) or die("Error in viewing all data due to " . mysqli_error($con));
+                }
 
-                  while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
-                    $participantid = $participantrow["participantid"];
-                    $firstname = $participantrow["firstname"];
-                    $lastname = $participantrow["lastname"];
-                    $email = $participantrow["email"];
+                $participantresult = mysqli_query($con, $participantsql) or die("Cannot execute sql.");
+                while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
+                  $participantid = $participantrow["participantid"];
+                  $firstname = $participantrow["firstname"];
+                  $lastname = $participantrow["lastname"];
+                  $email = $participantrow["email"];
 
-                    echo '<tr>
-                <td>' . $participantid . '</td>
-                <td> <a class="btn btn-danger" href="participant_delete_participant.php?participantid=' . $participantid . '">Delete</a> </td>
-                <td>' . $firstname . '</td>
-                <td>' . $lastname . '</td>
-                <td>' . $email . '</td>
-                <td>';
+                  echo '
+                    <tr>
+                      <td>' . $participantid . '</td>
+                      <td> <a class="btn btn-danger" href="participant_delete_participant.php?participantid=' . $participantid . '">Delete</a> </td>
+                      <td>' . $firstname . '</td>
+                      <td>' . $lastname . '</td>
+                      <td>' . $email . '</td>
+                      <td>
+                  ';
 
-                    $eventsql = "SELECT participants.participantid,participants.firstname,participants.lastname,participants.email,
+                  // join participants table with events table with registrations table
+                  $eventsql = "SELECT participants.participantid,participants.firstname,participants.lastname,participants.email,
                           events.eventname, events.eventid FROM participants 
                           LEFT JOIN registrations ON participants.participantid=registrations.participantid
                           LEFT JOIN events ON registrations.eventid=events.eventid WHERE registrations.participantid = $participantid";
-                    $eventresult = mysqli_query($con, $eventsql) or die("Error in viewing all data due to " . mysqli_error($con));
+                  $eventresult = mysqli_query($con, $eventsql) or die("Error in viewing all data due to " . mysqli_error($con));
 
-                    while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
-                      $eventid = $eventrow["eventid"];
-                      $eventname = $eventrow["eventname"];
-                      echo '
-                  <table class="col-12">
-                    <tr>
-                      <td class="col-8">' . $eventname . '</td>
-                      <td class="col-4"><a class="btn btn-danger" href="participant_delete_registration.php?eventid=' . $eventid . '&participantid=' . $participantid . '">Deregister</a></td>
-                    </tr>
-                  </table>';
-                    }
-
-                    echo '</td></tr>';
+                  // display eventname if participant is in registrations table
+                  while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
+                    $eventid = $eventrow["eventid"];
+                    $eventname = $eventrow["eventname"];
+                    echo '
+                      <table class="col-12">
+                        <tr>
+                          <td class="col-8">' . $eventname . '</td>
+                          <td class="col-4"><a class="btn btn-danger" href="participant_delete_registration.php?eventid=' . $eventid . '&participantid=' . $participantid . '">Deregister</a></td>
+                        </tr>
+                      </table>
+                    ';
                   }
-                  ?>
+
+                  echo '
+                      </td>
+                    </tr>
+                  ';
+                }
+                ?>
 
                 </tbody>
               </table>
@@ -166,14 +176,17 @@
       <div class="container">
         <main>
           <div class="py-5 text-center">
-            <h2>Error</h2>
-            <p>Restricted to admin. Redirecting you to homepage...</p>
+            <h2>Unauthorized Access</h2>
+            <p>This page contains features which requires administration authority.
+              <br>
+              Redirecting you to homepage...
+            </p>
           </div>
         </main>
       </div>
 
     <?php
-      header("refresh:3;url='../home/home.php'");
+      header("refresh:5;url='../home/home.php'");
       exit;
     endif;
   else :
@@ -182,8 +195,8 @@
     <div class="container">
       <main>
         <div class="py-5 text-center">
-          <h2>Error</h2>
-          <p>Unauthorized access.</p>
+          <h2>Please sign in</h2>
+          <p>This page contains features which requires sign in.</p>
           <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
         </div>
       </main>

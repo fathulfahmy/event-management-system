@@ -25,15 +25,14 @@
           </li>
 
           <?php
-          include "../connect.php";
           session_start();
-          if (isset($_SESSION["username"])) {
-            $role = $_SESSION["role"];
-
-            if ($role == "participant") {
+          if (isset($_SESSION["role"])) :
+            if ($_SESSION["role"] == "participant") :
           ?>
+
+              <!-- participant -->
               <li class="nav-item">
-                <a class="nav-link active" href="../registration/registration.php">Join Event</a>
+                <a class="nav-link" href="../registration/registration.php">Join Event</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../profile/profile.php">Profile</a>
@@ -41,9 +40,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
-            <?php
-            } else {
-            ?>
+
+            <?php else : ?>
+
+              <!-- admin -->
               <li class="nav-item">
                 <a class="nav-link" href="../event/event.php">Manage Event</a>
               </li>
@@ -56,34 +56,33 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
+
             <?php
-            }
-          } else {
-            ?>
+            endif;
+          else : ?>
+
+            <!-- visitor -->
             <li class="nav-item">
-              <a class="nav-link active" href="../registration/registration.php">Join Event</a>
+              <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../signin/signin.php">Sign In</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+            </li>
 
-          <?php
-          }
-          ?>
-
-
+          <?php endif; ?>
         </ul>
-
       </div>
     </div>
   </nav>
-  <?php
-  if (isset($_SESSION["username"])) :
-    $userid = $_SESSION["userid"];
-    $sessionusername = $_SESSION["username"];
-    $role = $_SESSION["role"];
 
-    if ($role == "participant") :
+  <?php
+  if (isset($_SESSION["role"])) :
+    if ($_SESSION["role"] == "participant") :
+      $userid = $_SESSION["userid"];
+      include "../connect.php";
   ?>
 
       <div class="container-fluid">
@@ -155,8 +154,11 @@
       <div class="container">
         <main>
           <div class="py-5 text-center">
-            <h2>Error</h2>
-            <p>Restricted to participant. Redirecting you to homepage...</p>
+            <h2>Unauthorized Access</h2>
+            <p>This page contains features which requires participant account.
+              <br>
+              Redirecting you to homepage...
+            </p>
           </div>
         </main>
       </div>
@@ -164,21 +166,21 @@
     <?php
       header("refresh:5;url='../home/home.php'");
       exit;
-
     endif;
   else :
     ?>
+
     <div class="container">
       <main>
         <div class="py-5 text-center">
-          <h2>Error</h2>
-          <p>Unauthorized access.</p>
+          <h2>Please sign in</h2>
+          <p>This page contains features which requires sign in.</p>
           <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
         </div>
       </main>
     </div>
-  <?php endif; ?>
 
+  <?php endif; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="../../js/colormodes.js"></script>
   <script src="../../js/navbar.js"></script>

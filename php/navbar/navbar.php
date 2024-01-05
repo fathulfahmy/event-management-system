@@ -12,13 +12,12 @@
         </li>
 
         <?php
-        include "../connect.php";
         session_start();
-        if (isset($_SESSION["username"])) {
-          $role = $_SESSION["role"];
-
-          if ($role == "participant") {
+        if (isset($_SESSION["role"])) :
+          if ($_SESSION["role"] == "participant") :
         ?>
+
+            <!-- participant -->
             <li class="nav-item">
               <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
@@ -28,9 +27,10 @@
             <li class="nav-item">
               <a class="nav-link" href="../signout/signout.php">Sign Out</a>
             </li>
-          <?php
-          } else {
-          ?>
+
+          <?php else : ?>
+
+            <!-- admin -->
             <li class="nav-item">
               <a class="nav-link" href="../event/event.php">Manage Event</a>
             </li>
@@ -43,24 +43,24 @@
             <li class="nav-item">
               <a class="nav-link" href="../signout/signout.php">Sign Out</a>
             </li>
+
           <?php
-          }
-        } else {
-          ?>
+          endif;
+        else : ?>
+
+          <!-- visitor -->
           <li class="nav-item">
             <a class="nav-link" href="../registration/registration.php">Join Event</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../signin/signin.php">Sign In</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+          </li>
 
-        <?php
-        }
-        ?>
-
-
+        <?php endif; ?>
       </ul>
-
     </div>
   </div>
 </nav>

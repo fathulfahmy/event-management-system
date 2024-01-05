@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
     <div class="container-fluid">
       <a class="navbar-brand" href="../home/home.php">Uniten Esports</a>
       <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
@@ -25,13 +25,12 @@
           </li>
 
           <?php
-           include "../connect.php";
-           session_start();
-          if (isset($_SESSION["username"])) {
-            $role = $_SESSION["role"];
-
-            if ($role == "participant") {
+          session_start();
+          if (isset($_SESSION["role"])) :
+            if ($_SESSION["role"] == "participant") :
           ?>
+
+              <!-- participant -->
               <li class="nav-item">
                 <a class="nav-link" href="../registration/registration.php">Join Event</a>
               </li>
@@ -41,11 +40,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
-            <?php
-            } else {
-            ?>
+
+            <?php else : ?>
+
+              <!-- admin -->
               <li class="nav-item">
-                <a class="nav-link active" href="../event/event.php">Manage Event</a>
+                <a class="nav-link" href="../event/event.php">Manage Event</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
@@ -56,35 +56,34 @@
               <li class="nav-item">
                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
               </li>
+
             <?php
-            }
-          } else {
-            ?>
+            endif;
+          else : ?>
+
+            <!-- visitor -->
             <li class="nav-item">
               <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../signin/signin.php">Sign In</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+            </li>
 
-          <?php
-          }
-          ?>
-
-
+          <?php endif; ?>
         </ul>
-
       </div>
     </div>
   </nav>
-  <?php
-  if (isset($_SESSION["username"])) :
-    $userid = $_SESSION["userid"];
-    $sessionusername = $_SESSION["username"];
-    $role = $_SESSION["role"];
 
-    if ($role == "admin") :
+  <?php
+  if (isset($_SESSION["role"])) :
+    if ($_SESSION["role"] == "admin") :
+      include "../connect.php";
   ?>
+
       <div class="container-fluid">
         <div class="row justify-content-center">
           <main class="col-md-9 col-lg-10 px-md-4">
@@ -102,24 +101,27 @@
                   </tr>
                 </thead>
                 <tbody>
+
                   <?php
                   // display events table
                   $sql = "SELECT * FROM events";
                   $result = mysqli_query($con, $sql) or die("Unable to execute sql");
+
                   while ($row =  mysqli_fetch_array($result, MYSQLI_BOTH)) {
                     $eventid = $row["eventid"];
                     $eventname = $row["eventname"];
                     $quota = $row["quota"];
 
                     echo '
-                    <tr>
-                      <td>' . $eventid . '</td>
-                      <td>' . $eventname . '</td>
-                      <td>' . $quota . '</td>
-                    </tr>
-                  ';
+                      <tr>
+                        <td>' . $eventid . '</td>
+                        <td>' . $eventname . '</td>
+                        <td>' . $quota . '</td>
+                      </tr>
+                    ';
                   }
                   ?>
+
                 </tbody>
               </table>
             </div>
@@ -132,14 +134,17 @@
       <div class="container">
         <main>
           <div class="py-5 text-center">
-            <h2>Error</h2>
-            <p>Restricted to admin. Redirecting you to homepage...</p>
+            <h2>Unauthorized Access</h2>
+            <p>This page contains features which requires administration authority.
+              <br>
+              Redirecting you to homepage...
+            </p>
           </div>
         </main>
       </div>
 
     <?php
-      header("refresh:3;url='../home/home.php'");
+      header("refresh:5;url='../home/home.php'");
       exit;
     endif;
   else :
@@ -148,8 +153,8 @@
     <div class="container">
       <main>
         <div class="py-5 text-center">
-          <h2>Error</h2>
-          <p>Unauthorized access.</p>
+          <h2>Please sign in</h2>
+          <p>This page contains features which requires sign in.</p>
           <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
         </div>
       </main>

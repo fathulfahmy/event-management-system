@@ -14,7 +14,7 @@
     <?php
     include "../connect.php";
 
-    if (isset($_POST["username"])) {
+    if (isset($_POST["submit"])) :
         // from signin.php
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -23,51 +23,90 @@
         $adminsql = "SELECT * FROM admins WHERE username = '$username'";
         $adminresult = mysqli_query($con, $adminsql);
 
-        if (mysqli_num_rows($adminresult) > 0) {
+        if (mysqli_num_rows($adminresult) > 0) :
             while ($adminrow = mysqli_fetch_array($adminresult, MYSQLI_BOTH)) {
-                if ($password == $adminrow["password"]) {
-                    // user is admin and password match
+
+                // user is admin and password match
+                if ($password == $adminrow["password"]) :
                     session_start();
                     $_SESSION["userid"] = $adminrow["adminid"];
                     $_SESSION["username"] = $username;
                     $_SESSION["role"] = "admin";
                     header("location:../home/home.php");
                     exit;
-                } else {
-                    echo "Wrong password. Redirecting you back...";
+                else :
+    ?>
+                    <div class="container">
+                        <main>
+                            <div class="py-5 text-center">
+                                <h2>Wrong password</h2>
+                                <p>Please try again. Redirecting you to signin page...</p>
+                            </div>
+                        </main>
+                    </div>
+
+                    <?php
                     header("refresh:3;url='signin.php'");
                     exit;
-                }
+                endif;
             }
-        } else {
+        else :
 
             // check username on participants table
             $participantsql = "SELECT * FROM participants WHERE username = '$username'";
             $participantresult = mysqli_query($con, $participantsql);
 
-            if (mysqli_num_rows($participantresult) > 0) {
+            if (mysqli_num_rows($participantresult) > 0) :
                 while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
-                    if ($password == $participantrow["password"]) {
-                        // user is participant and password match
+
+                    // user is participant and password match
+                    if ($password == $participantrow["password"]) :
                         session_start();
                         $_SESSION["userid"] = $participantrow["participantid"];
                         $_SESSION["username"] = $username;
                         $_SESSION["role"] = "participant";
                         header("location: ../home/home.php");
                         exit;
-                    } else {
-                        echo "Wrong password. Redirecting you back...";
+                    else :
+                    ?>
+
+                        <div class="container">
+                            <main>
+                                <div class="py-5 text-center">
+                                    <h2>Wrong password</h2>
+                                    <p>Please try again. Redirecting you to signin page...</p>
+                                </div>
+                            </main>
+                        </div>
+
+                <?php
                         header("refresh:3;url='signin.php'");
                         exit;
-                    }
+                    endif;
                 }
-            } else {
-                echo "Username  does not exist. Redirecting you back...";
+            else :
+                ?>
+
+                <div class="container">
+                    <main>
+                        <div class="py-5 text-center">
+                            <h2>Username does not exist</h2>
+                            <p>Please try again. Redirecting you to signin page...</p>
+                        </div>
+                    </main>
+                </div>
+
+    <?php
                 header("refresh:3;url='signin.php'");
                 exit;
-            }
-        }
-    }
+            endif;
+
+        endif;
+
+    else :
+        header("location:signin.php");
+        exit;
+    endif;
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

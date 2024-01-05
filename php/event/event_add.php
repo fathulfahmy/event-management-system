@@ -11,16 +11,79 @@
 </head>
 
 <body>
-  <?php
-  include "../connect.php";
-  session_start();
-  if (isset($_SESSION["username"])) :
-    $userid = $_SESSION["userid"];
-    $sessionusername = $_SESSION["username"];
-    $role = $_SESSION["role"];
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../home/home.php">Uniten Esports</a>
+      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    if ($role == "admin") :
+      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../home/home.php">Home</a>
+          </li>
+
+          <?php
+          session_start();
+          if (isset($_SESSION["role"])) :
+            if ($_SESSION["role"] == "participant") :
+          ?>
+
+              <!-- participant -->
+              <li class="nav-item">
+                <a class="nav-link" href="../registration/registration.php">Join Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../profile/profile.php">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+              </li>
+
+            <?php else : ?>
+
+              <!-- admin -->
+              <li class="nav-item">
+                <a class="nav-link" href="../event/event.php">Manage Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../profile/profile.php">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+              </li>
+
+            <?php
+            endif;
+          else : ?>
+
+            <!-- visitor -->
+            <li class="nav-item">
+              <a class="nav-link" href="../registration/registration.php">Join Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signin/signin.php">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+            </li>
+
+          <?php endif; ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <?php
+  if (isset($_SESSION["role"])) :
+    if ($_SESSION["role"] == "admin") :
+      include "../connect.php";
   ?>
+
       <div class="container">
         <main>
           <div class="py-5 text-center">
@@ -44,13 +107,10 @@
                   </div>
                 </div>
 
-                <button class="my-4 w-100 btn btn-primary btn-lg" type="submit">
+                <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" name="submit">
                   Create event
                 </button>
               </form>
-              <p class="text-center">
-                Go to Admin page. <a href="event.php">Click here</a>
-              </p>
             </div>
           </div>
         </main>
@@ -61,14 +121,17 @@
       <div class="container">
         <main>
           <div class="py-5 text-center">
-            <h2>Error</h2>
-            <p>Restricted to admin. Redirecting you to homepage...</p>
+            <h2>Unauthorized Access</h2>
+            <p>This page contains features which requires administration authority.
+              <br>
+              Redirecting you to homepage...
+            </p>
           </div>
         </main>
       </div>
 
     <?php
-      header("refresh:3;url='../home/home.php'");
+      header("refresh:5;url='../home/home.php'");
       exit;
     endif;
   else :
@@ -77,8 +140,8 @@
     <div class="container">
       <main>
         <div class="py-5 text-center">
-          <h2>Error</h2>
-          <p>Unauthorized access.</p>
+          <h2>Please sign in</h2>
+          <p>This page contains features which requires sign in.</p>
           <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
         </div>
       </main>

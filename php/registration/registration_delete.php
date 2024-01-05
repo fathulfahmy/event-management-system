@@ -12,32 +12,42 @@
 
 <body>
     <?php
-    include "../connect.php";
     session_start();
     if (isset($_SESSION["username"])) :
-        $userid = $_SESSION["userid"];
-        $sessionusername = $_SESSION["username"];
-        $role = $_SESSION["role"];
+        if ($_SESSION["role"] == "participant") :
+            include "../connect.php";
 
-        // from registration.php
-        $eventid = $_GET["eventid"];
-        $participantid = $_GET["participantid"];
+            // from registration.php
+            $eventid = $_GET["eventid"];
+            $participantid = $_GET["participantid"];
 
-        // delete participant from registrations table
-        $sql = "DELETE FROM registrations WHERE participantid = '$participantid' AND eventid = '$eventid'";
-        $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    else : ?>
-        <div class="container">
-            <main>
-                <div class="py-5 text-center">
-                    <h2>Error</h2>
-                    <p>Unauthorized access.</p>
-                    <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
-                </div>
-            </main>
-        </div>
-    <?php endif; ?>
+            // delete participant from registrations table
+            $sql = "DELETE FROM registrations WHERE participantid = '$participantid' AND eventid = '$eventid'";
+            $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            header("location:registration.php");
+
+        else :
+    ?>
+
+            <div class="container">
+                <main>
+                    <div class="py-5 text-center">
+                        <h2>Unauthorized Access</h2>
+                        <p>This page contains features which requires participant account.
+                            <br>
+                            Redirecting you to homepage...
+                        </p>
+                    </div>
+                </main>
+            </div>
+
+        <?php
+            header("refresh:5;url='../home/home.php'");
+            exit;
+        endif;
+    else :
+        header("location:registration.php");
+    endif; ?>
 
     <script src="../../js/colormodes.js"></script>
     <script src="../../js/navbar.js"></script>

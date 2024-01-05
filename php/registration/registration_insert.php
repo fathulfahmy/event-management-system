@@ -12,57 +12,65 @@
 
 <body>
     <?php
-    include "../connect.php";
     session_start();
-    if (isset($_SESSION["username"])) :
-        $userid = $_SESSION["userid"];
-        $sessionusername = $_SESSION["username"];
-        $role = $_SESSION["role"];
+    if (isset($_SESSION["role"])) :
+        if ($_SESSION["role"] == "participant") :
+            include "../connect.php";
 
-        // from registration.php
-        $eventid = $_GET["eventid"];
-        $participantid = $_GET["participantid"];
+            // from registration.php
+            $eventid = $_GET["eventid"];
+            $participantid = $_GET["participantid"];
 
-        // check participant on registrations table
-        $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $participantid";
-        $participantresult = mysqli_query($con, $participantsql);
-        if (mysqli_num_rows($participantresult) == 0) {
+            // check participant on registrations table
+            $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $participantid";
+            $participantresult = mysqli_query($con, $participantsql);
+            if (mysqli_num_rows($participantresult) == 0) {
 
-            // get quota from events table
-            $eventsql = "SELECT * FROM events WHERE eventid = $eventid";
-            $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
-            while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
-                $quota = $eventrow["quota"];
-            }
+                // get quota from events table
+                $eventsql = "SELECT * FROM events WHERE eventid = $eventid";
+                $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+                while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
+                    $quota = $eventrow["quota"];
+                }
 
-            // compare number of rows in registrations table with quota
-            $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-            $registrationresult = mysqli_query($con, $registrationsql);
-            if (mysqli_num_rows($registrationresult) < $quota) {
+                // compare number of rows in registrations table with quota
+                $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                $registrationresult = mysqli_query($con, $registrationsql);
+                if (mysqli_num_rows($registrationresult) < $quota) {
 
-                // insert participant into registrations table
-                $insertsql = "INSERT INTO registrations VALUES(null, '$participantid', '$eventid')";
-                $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to " . mysqli_error($con));
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    // insert participant into registrations table
+                    $insertsql = "INSERT INTO registrations VALUES(null, '$participantid', '$eventid')";
+                    $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to " . mysqli_error($con));
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            } else {
+                header("location:registration.php");
                 exit;
             }
-        } else {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-            exit;
-        }
 
-    else : ?>
-        <div class="container">
-            <main>
-                <div class="py-5 text-center">
-                    <h2>Error</h2>
-                    <p>Unauthorized access.</p>
-                    <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
-                </div>
-            </main>
-        </div>
-    <?php endif; ?>
+        else :
     ?>
+
+            <div class="container">
+                <main>
+                    <div class="py-5 text-center">
+                        <h2>Unauthorized Access</h2>
+                        <p>This page contains features which requires administration authority.
+                            <br>
+                            Redirecting you to homepage...
+                        </p>
+                    </div>
+                </main>
+            </div>
+
+    <?php
+            header("refresh:5;url='../home/home.php'");
+            exit;
+        endif;
+    else :
+        header("location:registration.php");
+    endif; ?>
 
     <script src="../../js/colormodes.js"></script>
     <script src="../../js/navbar.js"></script>

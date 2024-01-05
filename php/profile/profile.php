@@ -21,29 +21,29 @@
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="../home/home.php">Home</a>
+                        <a class="nav-link" aria-current="page" href="../home/home.php">Home</a>
                     </li>
 
                     <?php
-                    include "../connect.php";
                     session_start();
-                    if (isset($_SESSION["username"])) {
-                        $role = $_SESSION["role"];
-
-                        if ($role == "participant") {
+                    if (isset($_SESSION["role"])) :
+                        if ($_SESSION["role"] == "participant") :
                     ?>
+
+                            <!-- participant -->
                             <li class="nav-item">
                                 <a class="nav-link" href="../registration/registration.php">Join Event</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="../profile/profile.php">Profile</a>
+                                <a class="nav-link" href="../profile/profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
                             </li>
-                        <?php
-                        } else {
-                        ?>
+
+                        <?php else : ?>
+
+                            <!-- admin -->
                             <li class="nav-item">
                                 <a class="nav-link" href="../event/event.php">Manage Event</a>
                             </li>
@@ -51,36 +51,37 @@
                                 <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="../profile/profile.php">Profile</a>
+                                <a class="nav-link" href="../profile/profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
                             </li>
+
                         <?php
-                        }
-                    } else {
-                        ?>
+                        endif;
+                    else : ?>
+
+                        <!-- visitor -->
                         <li class="nav-item">
                             <a class="nav-link" href="../registration/registration.php">Join Event</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../signin/signin.php">Sign In</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+                        </li>
 
-                    <?php
-                    }
-                    ?>
-
-
+                    <?php endif; ?>
                 </ul>
-
             </div>
         </div>
     </nav>
+
     <?php
-    if (isset($_SESSION["username"])) :
+    if (isset($_SESSION["role"])) :
+        include "../connect.php";
         $userid = $_SESSION["userid"];
-        $sessionusername = $_SESSION["username"];
         $role = $_SESSION["role"];
 
         if ($role == "participant") {
@@ -180,12 +181,13 @@
                                 </div>
                             </div>
 
-                            <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" id="submitbtn">
+                            <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" name="submit">
                                 Update
                             </button>
                         </form>
 
-                        <?php if ($role == "participant") { ?>
+                        <?php if ($role == "participant") {
+                        ?>
                             <hr class="my-4" />
 
                             <h3 class="my-3" id="events">Events</h3>
@@ -223,9 +225,9 @@
 
                                         echo '
                                             <tr>
-                                              <td>' . $eventname . '</td>
-                                              <td>' . $joined . '</td>
-                                            ';
+                                                <td>' . $eventname . '</td>
+                                                <td>' . $joined . '</td>
+                                        ';
 
                                         // compare number of rows with quota
                                         $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
@@ -238,9 +240,9 @@
                                         }
 
                                         echo '
-                                              <td><a class="btn btn-danger" href="registration_delete.php?eventid=' . $eventid . '&participantid=' . $userid . '">Leave</a></td>
+                                                <td><a class="btn btn-danger" href="registration_delete.php?eventid=' . $eventid . '&participantid=' . $userid . '">Leave</a></td>
                                             </tr>
-                                            ';
+                                        ';
                                     };
                                 }
                                     ?>
@@ -257,8 +259,8 @@
         <div class="container">
             <main>
                 <div class="py-5 text-center">
-                    <h2>Error</h2>
-                    <p>Unauthorized access.</p>
+                    <h2>Please sign in</h2>
+                    <p>This page contains features which requires sign in.</p>
                     <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
                 </div>
             </main>

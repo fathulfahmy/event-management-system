@@ -13,79 +13,72 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../home/home.php">Uniten Esports</a>
-    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../home/home.php">Uniten Esports</a>
+      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../home/home.php">Home</a>
-        </li>
+      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../home/home.php">Home</a>
+          </li>
 
-        <?php
-        include "../connect.php";
-        session_start();
-        if (isset($_SESSION["username"])) {
-          $role = $_SESSION["role"];
+          <?php
+          session_start();
+          if (isset($_SESSION["role"])) :
+            if ($_SESSION["role"] == "participant") :
+          ?>
 
-          if ($role == "participant") {
-        ?>
+              <!-- participant -->
+              <li class="nav-item">
+                <a class="nav-link" href="../registration/registration.php">Join Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../profile/profile.php">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+              </li>
+
+            <?php else : ?>
+
+              <!-- admin -->
+              <li class="nav-item">
+                <a class="nav-link" href="../event/event.php">Manage Event</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../profile/profile.php">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+              </li>
+
+            <?php
+            endif;
+          else : ?>
+
+            <!-- visitor -->
             <li class="nav-item">
               <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../profile/profile.php">Profile</a>
+              <a class="nav-link" href="../signin/signin.php">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
             </li>
-          <?php
-          } else {
-          ?>
-            <li class="nav-item">
-              <a class="nav-link" href="../event/event.php">Manage Event</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../profile/profile.php">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../signout/signout.php">Sign Out</a>
-            </li>
-          <?php
-          }
-        } else {
-          ?>
-          <li class="nav-item">
-            <a class="nav-link" href="../registration/registration.php">Join Event</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../signin/signin.php">Sign In</a>
-          </li>
 
-        <?php
-        }
-        ?>
-
-
-      </ul>
-
+          <?php endif; ?>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-  <?php
-  if (isset($_SESSION["username"])) :
-    $userid = $_SESSION["userid"];
-    $sessionusername = $_SESSION["username"];
-    $role = $_SESSION["role"];
-  ?>
-  <?php endif; ?>
+  </nav>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
@@ -305,7 +298,7 @@
           </h2>
           <p class="lead">
             Experience the passion, camaraderie, and sheer skill of EA
-            SportsEnter FC 24. Beyond the virtual pitch, it's a celebration of
+            Sports FC 24. Beyond the virtual pitch, it's a celebration of
             football fandom and gaming excellence. Join us in this
             championship that transcends boundaries.
           </p>

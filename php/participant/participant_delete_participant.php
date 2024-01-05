@@ -12,15 +12,10 @@
 
 <body>
     <?php
-    include "../connect.php";
-
     session_start();
-    if (isset($_SESSION["username"])) :
-        $userid = $_SESSION["userid"];
-        $sessionusername = $_SESSION["username"];
-        $role = $_SESSION["role"];
-
-        if ($role == "admin") :
+    if (isset($_SESSION["role"])) :
+        if ($_SESSION["role"] == "admin") :
+            include "../connect.php";
 
             // from participant.php
             $participantid = $_GET["participantid"];
@@ -28,44 +23,30 @@
             // delete participant from participants table
             $sql = "DELETE FROM participants WHERE participantid = '$participantid'";
             $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            header("location:participant.php");
 
-            // response
-            if ($result) {
-                echo "You have successfully deleted the participant.";
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-            } else {
-                echo "Failed to delete the participant.";
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-            }
         else : ?>
 
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
-                        <h2>Error</h2>
-                        <p>Restricted to admin. Redirecting you to homepage...</p>
+                        <h2>Unauthorized Access</h2>
+                        <p>This page contains features which requires administration authority.
+                            <br>
+                            Redirecting you to homepage...
+                        </p>
                     </div>
                 </main>
             </div>
 
-        <?php
-            header("refresh:3;url='../home/home.php'");
+    <?php
+            header("refresh:5;url='../home/home.php'");
             exit;
         endif;
     else :
-        ?>
-
-        <div class="container">
-            <main>
-                <div class="py-5 text-center">
-                    <h2>Error</h2>
-                    <p>Unauthorized access.</p>
-                    <a class="btn btn-primary" href="../signin/signin.php">Sign In</a>
-                </div>
-            </main>
-        </div>
-
-    <?php endif;
+        header("location:participant.php");
+        exit;
+    endif;
     ?>
 
     <script src="../../js/colormodes.js"></script>
