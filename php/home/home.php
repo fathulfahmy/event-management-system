@@ -13,8 +13,73 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../home/home.php">Uniten Esports</a>
+    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../home/home.php">Home</a>
+        </li>
+
+        <?php
+        include "../connect.php";
+        session_start();
+        if (isset($_SESSION["username"])) {
+          $role = $_SESSION["role"];
+
+          if ($role == "participant") {
+        ?>
+            <li class="nav-item">
+              <a class="nav-link" href="../registration/registration.php">Join Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../profile/profile.php">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+            </li>
+          <?php
+          } else {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="../event/event.php">Manage Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../profile/profile.php">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+            </li>
+          <?php
+          }
+        } else {
+          ?>
+          <li class="nav-item">
+            <a class="nav-link" href="../registration/registration.php">Join Event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../signin/signin.php">Sign In</a>
+          </li>
+
+        <?php
+        }
+        ?>
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
   <?php
-  session_start();
   if (isset($_SESSION["username"])) :
     $userid = $_SESSION["userid"];
     $sessionusername = $_SESSION["username"];
@@ -83,7 +148,7 @@
   </div>
 
   <main>
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div id="myCarousel" class="carousel slide mb-6 pt-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
