@@ -48,7 +48,7 @@
                 <a class="nav-link" href="../event/event.php">Manage Event</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+                <a class="nav-link active" href="../participant/participant.php">Manage Participant</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../profile/profile.php">Profile</a>

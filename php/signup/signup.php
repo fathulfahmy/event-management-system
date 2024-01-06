@@ -69,7 +69,7 @@
               <a class="nav-link" href="../signin/signin.php">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+              <a class="nav-link active" href="../signup/signup.php">Sign Up</a>
             </li>
 
           <?php endif; ?>

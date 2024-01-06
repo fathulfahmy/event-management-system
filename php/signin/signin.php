@@ -66,7 +66,7 @@
               <a class="nav-link" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../signin/signin.php">Sign In</a>
+              <a class="nav-link active" href="../signin/signin.php">Sign In</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../signup/signup.php">Sign Up</a>

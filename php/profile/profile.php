@@ -35,7 +35,7 @@
                                 <a class="nav-link" href="../registration/registration.php">Join Event</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../profile/profile.php">Profile</a>
+                                <a class="nav-link active" href="../profile/profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>
@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../profile/profile.php">Profile</a>
+                                <a class="nav-link admin" href="../profile/profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../signout/signout.php">Sign Out</a>

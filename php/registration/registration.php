@@ -32,7 +32,7 @@
 
               <!-- participant -->
               <li class="nav-item">
-                <a class="nav-link" href="../registration/registration.php">Join Event</a>
+                <a class="nav-link active" href="../registration/registration.php">Join Event</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../profile/profile.php">Profile</a>
@@ -63,7 +63,7 @@
 
             <!-- visitor -->
             <li class="nav-item">
-              <a class="nav-link" href="../registration/registration.php">Join Event</a>
+              <a class="nav-link active" href="../registration/registration.php">Join Event</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../signin/signin.php">Sign In</a>
