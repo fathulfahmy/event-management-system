@@ -93,7 +93,7 @@
                 <label for="firstname" class="form-label">First name</label>
                 <input type="text" class="form-control" id="firstname" placeholder="" value="" name="firstname" required />
                 <div class="invalid-feedback">
-                  Valid first name is required.
+                  First name is required.
                 </div>
               </div>
 
@@ -101,7 +101,7 @@
                 <label for="lastname" class="form-label">Last name</label>
                 <input type="text" class="form-control" id="lastname" placeholder="" value="" name="lastname" required />
                 <div class="invalid-feedback">
-                  Valid last name is required.
+                  Last name is required.
                 </div>
               </div>
 
@@ -111,7 +111,7 @@
                   <span class="input-group-text">@</span>
                   <input type="text" class="form-control" id="username" placeholder="Username" name="username" required />
                   <div class="invalid-feedback">
-                    Your username is required.
+                    Username is required.
                   </div>
                 </div>
               </div>
@@ -126,16 +126,18 @@
 
               <div class="col-12">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="" name="password" required />
+                <input type="password" class="form-control" id="password" name="password" placeholder="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                 <div class="invalid-feedback">
-                  Please enter a valid password.
+                  Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
                 </div>
               </div>
 
               <div class="col-12">
-                <label for="retypepassword" class="form-label">Re-type password</label>
-                <input type="password" class="form-control" id="retypepassword" placeholder="" required />
-                <div class="invalid-feedback">Passwords do not match.</div>
+                <label for="retypepassword" class="form-label" id="retypepasswordlabel">Re-type password</label>
+                <input type="password" class="form-control" id="retypepassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                <div class="invalid-feedback" id="retypepasswordmsg">
+                  Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.
+                </div>
               </div>
             </div>
 

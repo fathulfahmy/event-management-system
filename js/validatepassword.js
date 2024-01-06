@@ -2,16 +2,34 @@ const password = document.getElementById("password");
 const retypePassword = document.getElementById("retypepassword");
 const retypePasswordMsg = document.getElementById("retypepasswordmsg");
 
+const lowerCaseLetters = /[a-z]/g;
+const upperCaseLetters = /[A-Z]/g;
+const numbers = /[0-9]/g;
+const minLength = 8;
+
 const validatePassword = () => {
   if (
-    password.value !== "" &&
-    retypePassword.value !== "" &&
-    password.value !== retypePassword.value
+    password.value.match(lowerCaseLetters) &&
+    password.value.match(upperCaseLetters) &&
+    password.value.match(numbers) &&
+    password.value.length >= minLength
   ) {
-    retypePassword.setCustomValidity("Passwords do not match.");
-    retypePasswordMsg.innerHTML = "Passwords do not match.";
+    if (
+      password.value !== "" &&
+      retypePassword.value !== "" &&
+      password.value !== retypePassword.value
+    ) {
+      retypePassword.setCustomValidity("Passwords do not match.");
+      retypePasswordMsg.innerHTML = "Passwords do not match.";
+    } else {
+      retypePassword.setCustomValidity("");
+    }
   } else {
-    retypePassword.setCustomValidity("");
+    retypePassword.setCustomValidity(
+      "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters."
+    );
+    retypePasswordMsg.innerHTML =
+      "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
   }
 };
 

@@ -120,7 +120,7 @@
                                     <label for="firstname" class="form-label">First name</label>
                                     <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname ?>" placeholder="<?php echo $firstname ?>" required />
                                     <div class="invalid-feedback">
-                                        Valid first name is required.
+                                        First name is required.
                                     </div>
                                 </div>
 
@@ -129,7 +129,7 @@
                                     <!-- response 2 -->
                                     <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname ?>" placeholder="<?php echo $lastname ?>" required />
                                     <div class="invalid-feedback">
-                                        Valid last name is required.
+                                        Last name is required.
                                     </div>
                                 </div>
 
@@ -152,7 +152,7 @@
                                         <!-- response 4 -->
                                         <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" required readonly />
                                         <div class="invalid-feedback">
-                                            Your username is required.
+                                            Username is required.
                                         </div>
                                     </div>
                                 </div>
@@ -168,16 +168,18 @@
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="" required />
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                     <div class="invalid-feedback">
-                                        Please enter a valid password.
+                                        Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="retypepassword" class="form-label" id="retypepasswordlabel">Re-type password</label>
-                                    <input type="password" class="form-control" id="retypepassword" required />
-                                    <div class="invalid-feedback" id="retypepasswordmsg"></div>
+                                    <input type="password" class="form-control" id="retypepassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                    <div class="invalid-feedback" id="retypepasswordmsg">
+                                        Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.
+                                    </div>
                                 </div>
                             </div>
 
@@ -196,8 +198,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th scope="col" class="col-2">Event ID</th>
                                             <th scope="col">Event name</th>
-                                            <th scope="col" class="col-2">Joined</th>
+                                            <th scope="col" class="col-1">Registered</th>
+                                            <th scope="col" class="col-1">Quota</th>
+                                            <th scope="col" class="col-1">Joined</th>
                                             <th scope="col" class="col-1">Join</th>
                                             <th scope="col" class="col-1">Leave</th>
                                         </tr>
@@ -213,11 +218,15 @@
                                         $eventid = $eventrow[0];
                                         $eventname = $eventrow[1];
                                         $quota = $eventrow[2];
-                                        $joined = 'No';
 
                                         // check participant on registrations table
+                                        $joined = 'No';
                                         $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $userid";
                                         $participantresult = mysqli_query($con, $participantsql);
+
+                                        // get number of rows in registrations table
+                                        $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                                        $registrationresult = mysqli_query($con, $registrationsql);
 
                                         if (mysqli_num_rows($participantresult) > 0) {
                                             $joined = 'Yes';
@@ -225,13 +234,13 @@
 
                                         echo '
                                             <tr>
+                                                <td>' . $eventid . '</td>
                                                 <td>' . $eventname . '</td>
+                                                <td>' . mysqli_num_rows($registrationresult) . '</td>
+                                                <td>' . $quota . '</td>
                                                 <td>' . $joined . '</td>
                                         ';
 
-                                        // compare number of rows with quota
-                                        $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                                        $registrationresult = mysqli_query($con, $registrationsql);
 
                                         if (mysqli_num_rows($registrationresult) < $quota) {
                                             echo '<td><a class="btn btn-success" href="registration_insert.php?eventid=' . $eventid . '&participantid=' . $userid . '">Join</a></td>';
