@@ -12,53 +12,41 @@
 
 <body>
     <?php
-    if (isset($_POST["submit"])) :
-        include "../connect.php";
+    session_start();
+    if (isset($_SESSION["role"])) :
+        if ($_SESSION["role"] == "admin") :
+            include "../connect.php";
 
-        // from event.php
-        $eventname = $_POST["eventname"];
-        $quota = $_POST["quota"];
+            // from event.php
+            $eventid = $_GET["eventid"];
 
-        // insert new event into events table
-        $sql = "INSERT INTO events VALUES (null, '$eventname', '$quota' )";
-        $result = mysqli_query($con, $sql);
+            // delete event from events table
+            $sql = "DELETE FROM events WHERE eventid = '$eventid'";
+            $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            header("location:event.php");
 
-        if ($result) :
+        else :
     ?>
 
             <div class="container">
                 <main>
                     <div class="py-5 text-center">
-                        <h2>Success</h2>
-                        <p>New event has been created. Redirecting you to event page...</p>
-                    </div>
-                </main>
-            </div>
-
-        <?php
-            header("refresh:3;url=event.php");
-            exit;
-        else :
-        ?>
-
-            <div class="container">
-                <main>
-                    <div class="py-5 text-center">
-                        <h2>Error</h2>
-                        <p>Please try again. Redirecting you to event page...</p>
+                        <h2>Unauthorized Access</h2>
+                        <p>This page contains features which requires administration authority.
+                            <br>
+                            Redirecting you to homepage...
+                        </p>
                     </div>
                 </main>
             </div>
 
     <?php
-            header("refresh:3;url=event.php");
+            header("refresh:5;url='../home/home.php'");
             exit;
         endif;
-
     else :
-        header("location: event.php");
-    endif;
-    ?>
+        header("location:event.php");
+    endif; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../../js/colormodes.js"></script>

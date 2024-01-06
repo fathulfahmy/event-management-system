@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events</title>
+  <title>Manage Event</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link rel="stylesheet" href="../../css/colormodes.css" />
   <link rel="stylesheet" href="../../css/navbar.css" />
@@ -95,9 +95,11 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Event ID</th>
-                    <th scope="col" class="col-2">Event Name</th>
-                    <th scope="col" class="col-2">Quota</th>
+                    <th scope="col" class="col-1">Event ID</th>
+                    <th scope="col">Event Name</th>
+                    <th scope="col" class="col-1">Registered</th>
+                    <th scope="col" class="col-1">Quota</th>
+                    <th scope="col" class="col-1">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -112,11 +114,17 @@
                     $eventname = $row["eventname"];
                     $quota = $row["quota"];
 
+                    // get number of rows for each eventid
+                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                    $registrationresult = mysqli_query($con, $registrationsql);
+
                     echo '
                       <tr>
                         <td>' . $eventid . '</td>
                         <td>' . $eventname . '</td>
+                        <td>' . mysqli_num_rows($registrationresult) . '</td>
                         <td>' . $quota . '</td>
+                        <td><a class="btn btn-danger" href="event_delete.php?eventid=' . $eventid . '">Delete</a></td>
                       </tr>
                     ';
                   }

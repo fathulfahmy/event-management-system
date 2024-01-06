@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Event</title>
+  <title>Manage Event</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link rel="stylesheet" href="../../css/colormodes.css" />
   <link rel="stylesheet" href="../../css/navbar.css" />
@@ -102,8 +102,8 @@
 
                   <div class="col-lg-2">
                     <label for="quota" class="form-label">Quota</label>
-                    <input type="number" class="form-control" id="quota" name="quota" placeholder="0" required />
-                    <div class="invalid-feedback">Event quota is required.</div>
+                    <input type="number" class="form-control" id="quota" name="quota" placeholder="0" min="2" required />
+                    <div class="invalid-feedback">Minimum quota is 2.</div>
                   </div>
                 </div>
 
