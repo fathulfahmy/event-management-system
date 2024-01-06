@@ -22,7 +22,7 @@
 
             // delete participant from participants table
             $sql = "DELETE FROM participants WHERE participantid = '$participantid'";
-            $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            $result = mysqli_query($con, $sql) or die("Unable to delete from participants table due to " . mysqli_error($con));
             header("location:participant.php");
 
         else : ?>

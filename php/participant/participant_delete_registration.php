@@ -23,7 +23,7 @@
 
             // delete participant in registrations table
             $sql = "DELETE FROM registrations WHERE participantid = '$participantid' AND eventid = '$eventid'";
-            $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            $result = mysqli_query($con, $sql) or die("Unable to delete from registrations table due to " . mysqli_error($con));
 
             header("location:participant.php");
             exit;

@@ -26,11 +26,11 @@
         if ($_SESSION["role"] == "participant") {
             // get participant email
             $participantsql = "SELECT * FROM participants WHERE participantid = $userid";
-            $participantresult = mysqli_query($con, $participantsql);
+            $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
             $participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH);
 
             $emailsql = "SELECT * FROM participants WHERE email = '$email'";
-            $emailresult = mysqli_query($con, $emailsql);
+            $emailresult = mysqli_query($con, $emailsql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
 
             // email already exist
             if (mysqli_num_rows($emailresult) > 0 && $email != $participantrow["email"]) :
@@ -57,11 +57,11 @@
         } else {
             // get admin email
             $adminsql = "SELECT * FROM admins WHERE adminid = $userid";
-            $adminresult = mysqli_query($con, $adminsql);
+            $adminresult = mysqli_query($con, $adminsql) or die("Unable to fetch from admins table due to " . mysqli_error($con));
             $adminrow = mysqli_fetch_array($adminresult, MYSQLI_BOTH);
 
             $emailsql = "SELECT * FROM admins WHERE email = '$email'";
-            $emailresult = mysqli_query($con, $emailsql);
+            $emailresult = mysqli_query($con, $emailsql) or die("Unable to fetch from admins table due to " . mysqli_error($con));
 
             // email already exist
             if (mysqli_num_rows($emailresult) > 0 && $email != $adminrow["email"]) :
@@ -87,7 +87,7 @@
             endif;
         }
 
-        $result = mysqli_query($con, $sql);
+        $result = mysqli_query($con, $sql) or die("Unable to update data due to " . mysqli_error($con));
 
         if ($result) :
             ?>

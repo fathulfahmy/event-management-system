@@ -21,7 +21,7 @@
 
         // check username on admins table
         $adminsql = "SELECT * FROM admins WHERE username = '$username'";
-        $adminresult = mysqli_query($con, $adminsql);
+        $adminresult = mysqli_query($con, $adminsql) or die("Unable to fetch from admins table due to " . mysqli_error($con));
 
         if (mysqli_num_rows($adminresult) > 0) :
             while ($adminrow = mysqli_fetch_array($adminresult, MYSQLI_BOTH)) {
@@ -54,7 +54,7 @@
 
             // check username on participants table
             $participantsql = "SELECT * FROM participants WHERE username = '$username'";
-            $participantresult = mysqli_query($con, $participantsql);
+            $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
 
             if (mysqli_num_rows($participantresult) > 0) :
                 while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {

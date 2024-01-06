@@ -22,7 +22,7 @@
 
             // delete event from events table
             $sql = "DELETE FROM events WHERE eventid = '$eventid'";
-            $result = mysqli_query($con, $sql) or die("Error deleting data due to " . mysqli_error($con));
+            $result = mysqli_query($con, $sql) or die("Unable to delete from events table due to " . mysqli_error($con));
             header("location:event.php");
 
         else :

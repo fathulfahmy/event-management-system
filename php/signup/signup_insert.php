@@ -24,7 +24,7 @@
 
         // check username on participants table
         $usernamesql = "SELECT * FROM participants WHERE username = '$username'";
-        $usernameresult = mysqli_query($con, $usernamesql);
+        $usernameresult = mysqli_query($con, $usernamesql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
 
         // username already exist
         if (mysqli_num_rows($usernameresult) > 0) :
@@ -46,7 +46,7 @@
 
             // check email on participants table
             $emailsql = "SELECT * FROM participants WHERE email = '$email'";
-            $emailresult = mysqli_query($con, $emailsql);
+            $emailresult = mysqli_query($con, $emailsql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
 
             // email already exist
             if (mysqli_num_rows($emailresult) > 0) :
@@ -67,7 +67,7 @@
             else :
                 // insert new user into participants table
                 $insertsql = "INSERT INTO participants VALUES (null, '$firstname', '$lastname','$username', '$email', '$password')";
-                $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to" . mysqli_error($con));
+                $insertresult = mysqli_query($con, $insertsql) or die("Unable to insert into participants table due to " . mysqli_error($con));
 
                 if ($insertresult) :
                 ?>

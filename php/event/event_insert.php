@@ -21,7 +21,7 @@
 
         // insert new event into events table
         $sql = "INSERT INTO events VALUES (null, '$eventname', '$quota' )";
-        $result = mysqli_query($con, $sql);
+        $result = mysqli_query($con, $sql) or die("Unable to insert into events table due to " .  mysqli_error($con));
 
         if ($result) :
     ?>

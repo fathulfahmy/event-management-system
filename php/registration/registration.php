@@ -108,7 +108,7 @@
                   <?php
                   // display events from events table
                   $eventsql = "SELECT * FROM events";
-                  $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+                  $eventresult = mysqli_query($con, $eventsql) or die("Unable to fetch from events table due to " . mysqli_error($con));
                   while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
                     $eventid = $eventrow["eventid"];
                     $eventname = $eventrow["eventname"];
@@ -117,14 +117,14 @@
                     // check participant on registrations table
                     $joined = 'No';
                     $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $userid";
-                    $participantresult = mysqli_query($con, $participantsql);
+                    $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
                     if (mysqli_num_rows($participantresult) > 0) {
                       $joined = 'Yes';
                     }
 
                     // get number of rows in registrations table
                     $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                    $registrationresult = mysqli_query($con, $registrationsql);
+                    $registrationresult = mysqli_query($con, $registrationsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
 
                     echo '
                     <tr>

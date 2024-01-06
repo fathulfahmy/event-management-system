@@ -107,7 +107,7 @@
                   <?php
                   // display events table
                   $sql = "SELECT * FROM events";
-                  $result = mysqli_query($con, $sql) or die("Unable to execute sql");
+                  $result = mysqli_query($con, $sql) or die("Unable to fetch data from events table due to " . mysqli_error($con));
 
                   while ($row =  mysqli_fetch_array($result, MYSQLI_BOTH)) {
                     $eventid = $row["eventid"];
@@ -116,7 +116,7 @@
 
                     // get number of rows for each eventid
                     $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                    $registrationresult = mysqli_query($con, $registrationsql);
+                    $registrationresult = mysqli_query($con, $registrationsql) or die("Unable to fetch data from registrations table due to " . mysqli_error($con));
 
                     echo '
                       <tr>

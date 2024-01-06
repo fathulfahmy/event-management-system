@@ -119,7 +119,7 @@
                   $participantsql = "SELECT * FROM participants";
                 }
 
-                $participantresult = mysqli_query($con, $participantsql) or die("Cannot execute sql.");
+                $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch data from participants table due to " . mysqli_error($con));
                 while ($participantrow = mysqli_fetch_array($participantresult, MYSQLI_BOTH)) {
                   $participantid = $participantrow["participantid"];
                   $firstname = $participantrow["firstname"];
@@ -141,7 +141,7 @@
                           events.eventname, events.eventid FROM participants 
                           LEFT JOIN registrations ON participants.participantid=registrations.participantid
                           LEFT JOIN events ON registrations.eventid=events.eventid WHERE registrations.participantid = $participantid";
-                  $eventresult = mysqli_query($con, $eventsql) or die("Error in viewing all data due to " . mysqli_error($con));
+                  $eventresult = mysqli_query($con, $eventsql) or die("Unable to join participants table with registrations table and events table due to " . mysqli_error($con));
 
                   // display eventname if participant is in registrations table
                   while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {

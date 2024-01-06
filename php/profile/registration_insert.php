@@ -23,24 +23,24 @@
 
             // check participant on registrations table
             $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $participantid";
-            $participantresult = mysqli_query($con, $participantsql);
+            $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
             if (mysqli_num_rows($participantresult) == 0) {
 
                 // get quota from events table
                 $eventsql = "SELECT * FROM events WHERE eventid = $eventid";
-                $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+                $eventresult = mysqli_query($con, $eventsql) or die("Unable to fetch from events table due to " . mysqli_error($con));
                 while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_BOTH)) {
                     $quota = $eventrow["quota"];
                 }
 
                 // compare number of rows in registrations table with quota
                 $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                $registrationresult = mysqli_query($con, $registrationsql);
+                $registrationresult = mysqli_query($con, $registrationsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
                 if (mysqli_num_rows($registrationresult) < $quota) {
 
                     // insert participant into registrations table
                     $insertsql = "INSERT INTO registrations VALUES(null, '$participantid', '$eventid')";
-                    $insertresult = mysqli_query($con, $insertsql) or die("Error in inserting data due to " . mysqli_error($con));
+                    $insertresult = mysqli_query($con, $insertsql) or die("Unable to insert into registrations table due to " . mysqli_error($con));
                     header("location:profile.php#events");
                     exit;
                 }

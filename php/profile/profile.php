@@ -87,12 +87,12 @@
         if ($role == "participant") {
             // get participant information from participants table
             $sql = "SELECT * FROM participants WHERE participantid = $userid";
-            $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
+            $result = mysqli_query($con, $sql) or die("Unable to fetch from participants table due to " . mysqli_error($con));
             $row = mysqli_fetch_array($result, MYSQLI_BOTH);
         } else {
             // get admin information from admins table
             $sql = "SELECT * FROM admins WHERE adminid = $userid";
-            $result = mysqli_query($con, $sql) or die("Unable to execute sql insert query.");
+            $result = mysqli_query($con, $sql) or die("Unable to fetch from admins table due to " . mysqli_error($con));
             $row = mysqli_fetch_array($result, MYSQLI_BOTH);
         }
 
@@ -217,7 +217,7 @@
                                     <?php
                                     // display all events
                                     $eventsql = "SELECT * FROM events";
-                                    $eventresult = mysqli_query($con, $eventsql) or die("Unable to execute sql");
+                                    $eventresult = mysqli_query($con, $eventsql) or die("Unable to fetch from events table due to " . mysqli_error($con));
                                     while ($eventrow = mysqli_fetch_array($eventresult, MYSQLI_NUM)) {
                                         $eventid = $eventrow[0];
                                         $eventname = $eventrow[1];
@@ -226,11 +226,11 @@
                                         // check participant on registrations table
                                         $joined = 'No';
                                         $participantsql = "SELECT * FROM registrations WHERE eventid = $eventid AND participantid = $userid";
-                                        $participantresult = mysqli_query($con, $participantsql);
+                                        $participantresult = mysqli_query($con, $participantsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
 
                                         // get number of rows in registrations table
                                         $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                                        $registrationresult = mysqli_query($con, $registrationsql);
+                                        $registrationresult = mysqli_query($con, $registrationsql) or die("Unable to fetch from registrations table due to " . mysqli_error($con));
 
                                         if (mysqli_num_rows($participantresult) > 0) {
                                             $joined = 'Yes';
