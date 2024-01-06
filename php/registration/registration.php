@@ -93,8 +93,11 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
+                    <th scope="col" class="col-1">Event ID</th>
                     <th scope="col">Event name</th>
-                    <th scope="col" class="col-2">Joined</th>
+                    <th scope="col" class="col-1">Registered</th>
+                    <th scope="col" class="col-1">Quota</th>
+                    <th scope="col" class="col-1">Joined</th>
                     <th scope="col" class="col-1">Join</th>
                     <th scope="col" class="col-1">Leave</th>
                   </tr>
@@ -119,15 +122,19 @@
                       $joined = 'Yes';
                     }
 
+                    // get number of rows in registrations table
+                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
+                    $registrationresult = mysqli_query($con, $registrationsql);
+
                     echo '
                     <tr>
+                      <td>' . $eventid . '</td>
                       <td>' . $eventname . '</td>
+                      <td>' . mysqli_num_rows($registrationresult) . '</td>
+                      <td>' . $quota . '</td>
                       <td>' . $joined . '</td>
                   ';
 
-                    // compare number of rows in registrations table with quota
-                    $registrationsql = "SELECT * FROM registrations WHERE eventid = $eventid";
-                    $registrationresult = mysqli_query($con, $registrationsql);
                     if (mysqli_num_rows($registrationresult) < $quota) {
                       echo '<td><a class="btn btn-success" href="registration_insert.php?eventid=' . $eventid . '&participantid=' . $userid . '">Join</a></td>';
                     } else {
