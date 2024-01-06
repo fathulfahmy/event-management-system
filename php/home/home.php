@@ -199,7 +199,10 @@
           </svg>
           <h2 class="fw-normal">Valorant</h2>
           <p>
-            9 March 2024, 11.00AM <br /><br />
+            5v5. Best of 3 Maps.
+            <br />
+            9 March 2024, 11.00AM
+            <br /><br />
             Join the battle, showcase your skills, and compete with the best
             in our electrifying Valorant tournament. Are you ready to outplay
             and outgun your opponents?
@@ -215,7 +218,10 @@
           </svg>
           <h2 class="fw-normal">Counter-Strike 2</h2>
           <p>
-            9 March 2024, 1.00PM <br /><br />
+            5v5. Best of 3 Maps.
+            <br />
+            9 March 2024, 1.00PM 
+            <br /><br />
             Precision, teamwork, and strategy will be your keys to victory in
             our Counter Strike 2 tournament. Can you lead your team to glory
             in the ultimate showdown?
@@ -233,7 +239,10 @@
           </svg>
           <h2 class="fw-normal">EA Sports FC 24</h2>
           <p>
-            9 March 2024, 3.00PM <br /><br />
+            1v1. Ultimate Teams (UT).
+            <br />
+            9 March 2024, 3.00PM 
+            <br /><br />
             Lace up, compete, and be part of the football gaming history in
             our heart-pounding EAFC 24 tournament. Are you the next virtual
             football legend?
