@@ -181,6 +181,10 @@
                                         Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.
                                     </div>
                                 </div>
+
+                                <div>
+                                    <input type="checkbox" id="showpassword"> Show password
+                                </div>
                             </div>
 
                             <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" name="submit">

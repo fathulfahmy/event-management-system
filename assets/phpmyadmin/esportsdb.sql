@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 05:18 PM
+-- Generation Time: Jan 06, 2024 at 04:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,9 +35,9 @@ CREATE TABLE `admins` (
   `adminid` int(4) UNSIGNED ZEROFILL NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL DEFAULT 'unitenesports',
-  `email` varchar(30) NOT NULL DEFAULT 'esports@uniten.edu.my',
-  `password` varchar(30) NOT NULL DEFAULT 'admin123'
+  `username` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL DEFAULT 'Admin123'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -45,7 +45,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`adminid`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
-(0001, 'Muhammad Fathul Fahmy', 'Bin Mohd Nizam', 'unitenesports', 'esports@uniten.edu.my', 'admin');
+(0001, 'Uniten', 'Esports 1', 'unitenesports1', 'unitenesports1@uniten.edu.my', 'Admin123'),
+(0002, 'Uniten', 'Esports 2', 'unitenesports2', 'unitenesports2@uniten.edu.my', 'Admin123');
 
 -- --------------------------------------------------------
 
@@ -67,8 +68,7 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`eventid`, `eventname`, `quota`) VALUES
 (0001, 'Valorant', 3),
 (0002, 'Counter-Strike 2', 3),
-(0003, 'EA Sports FC 24', 2),
-(0004, 'The Finals', 2);
+(0003, 'EA Sports FC 24', 2);
 
 -- --------------------------------------------------------
 
@@ -91,10 +91,10 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`participantid`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
-(0001, 'Akmal Izudin', 'Bin Zakaria', 'leaxdomo', 'akmalizudin@gmail.com', 'akmal123'),
-(0002, 'Muhammad Safwan', 'Bin Serat', 'iwansafwan', 'safwanserat@gmail.com', 'safwan123'),
-(0003, 'Mus\'ab Salihin', 'Bin Mustaffa', 'musabsalihin', 'musabsalihin@gmail.com', 'musab123'),
-(0004, 'Wan Haziq Iskandar', 'Bin Wan Izhan', 'haziqiskandar', 'haziqiskandar@gmail.com', 'haziq123');
+(0001, 'Akmal Izudin', 'Bin Zakaria', 'akmal', 'akmalizudin@gmail.com', 'Akmal123'),
+(0002, 'Muhammad Safwan', 'Bin Serat', 'safwan', 'safwanserat@gmail.com', 'Safwan123'),
+(0003, 'Mus\'ab Salihin', 'Bin Mustaffa', 'musab', 'musabsalihin@gmail.com', 'Musab123'),
+(0004, 'Wan Haziq Iskandar', 'Bin Wan Izhan', 'haziq', 'haziqiskandar@gmail.com', 'Haziq123');
 
 -- --------------------------------------------------------
 
@@ -114,11 +114,12 @@ CREATE TABLE `registrations` (
 --
 
 INSERT INTO `registrations` (`registrationid`, `participantid`, `eventid`) VALUES
-(0001, 0001, 0001),
-(0002, 0002, 0002),
-(0003, 0003, 0001),
-(0013, 0002, 0003),
-(0014, 0004, 0003);
+(0015, 0001, 0001),
+(0016, 0003, 0001),
+(0017, 0002, 0002),
+(0018, 0001, 0002),
+(0019, 0004, 0003),
+(0020, 0002, 0003);
 
 --
 -- Indexes for dumped tables
@@ -158,7 +159,7 @@ ALTER TABLE `registrations`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `adminid` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `adminid` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -176,7 +177,7 @@ ALTER TABLE `participants`
 -- AUTO_INCREMENT for table `registrations`
 --
 ALTER TABLE `registrations`
-  MODIFY `registrationid` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `registrationid` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

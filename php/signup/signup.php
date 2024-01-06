@@ -141,10 +141,15 @@
               </div>
             </div>
 
+            <div>
+              <input type="checkbox" id="showpassword"> Show password
+            </div>
+
             <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" name="submit">
               Create account
             </button>
           </form>
+
           <p class="text-center">
             Already have an account? <a href="../signin/signin.php">Sign In</a>
           </p>
