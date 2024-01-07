@@ -1,7 +1,6 @@
 const password = document.getElementById("password");
 const retypePassword = document.getElementById("retypepassword");
 const retypePasswordMsg = document.getElementById("retypepasswordmsg");
-
 const validatePassword = () => {
   const lowerCaseLetters = /[a-z]/g;
   const upperCaseLetters = /[A-Z]/g;
@@ -36,7 +35,7 @@ const validatePassword = () => {
 password.addEventListener("input", validatePassword);
 retypePassword.addEventListener("input", validatePassword);
 
-function togglePassword() {
+function showPassword() {
   if (password.type === "password" && retypePassword.type === "password") {
     password.type = "text";
     retypePassword.type = "text";
@@ -45,6 +44,3 @@ function togglePassword() {
     retypePassword.type = "password";
   }
 }
-
-const showPassword = document.getElementById("showpassword");
-showPassword.onclick = togglePassword;

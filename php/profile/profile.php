@@ -37,43 +37,54 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="../profile/profile.php">Profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
-                            </li>
+                </ul>
 
-                        <?php else : ?>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+                    </li>
+                </ul>
 
-                            <!-- admin -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="../event/event.php">Manage Event</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link admin" href="../profile/profile.php">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
-                            </li>
+            <?php else : ?>
 
-                        <?php
+                <!-- admin -->
+                <li class="nav-item">
+                    <a class="nav-link" href="../event/event.php">Manage Event</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link admin" href="../profile/profile.php">Profile</a>
+                </li>
+                </ul>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+                    </li>
+                </ul>
+
+            <?php
                         endif;
                     else : ?>
 
-                        <!-- visitor -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="../registration/registration.php">Join Event</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../signin/signin.php">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../signup/signup.php">Sign Up</a>
-                        </li>
+            <!-- visitor -->
+            <li class="nav-item">
+                <a class="nav-link" href="../registration/registration.php">Join Event</a>
+            </li>
+            </ul>
 
-                    <?php endif; ?>
-                </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="../signin/signin.php">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+                </li>
+            </ul>
+
+        <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -182,9 +193,11 @@
                                     </div>
                                 </div>
 
-                                <div>
-                                    <input type="checkbox" id="showpassword"> Show password
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="showpassword" onclick="showPassword()">
+                                    <label class="form-check-label" for="showpassword">Show password</label>
                                 </div>
+
                             </div>
 
                             <button class="my-4 w-100 btn btn-primary btn-lg" type="submit" name="submit">

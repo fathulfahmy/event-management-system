@@ -39,43 +39,54 @@
               <li class="nav-item">
                 <a class="nav-link" href="../profile/profile.php">Profile</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
-              </li>
+        </ul>
 
-            <?php else : ?>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+          </li>
+        </ul>
 
-              <!-- admin -->
-              <li class="nav-item">
-                <a class="nav-link" href="../event/event.php">Manage Event</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../profile/profile.php">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../signout/signout.php">Sign Out</a>
-              </li>
+      <?php else : ?>
 
-            <?php
+        <!-- admin -->
+        <li class="nav-item">
+          <a class="nav-link" href="../event/event.php">Manage Event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../participant/participant.php">Manage Participant</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../profile/profile.php">Profile</a>
+        </li>
+        </ul>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="../signout/signout.php">Sign Out</a>
+          </li>
+        </ul>
+
+      <?php
             endif;
           else : ?>
 
-            <!-- visitor -->
-            <li class="nav-item">
-              <a class="nav-link" href="../registration/registration.php">Join Event</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../signin/signin.php">Sign In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../signup/signup.php">Sign Up</a>
-            </li>
+      <!-- visitor -->
+      <li class="nav-item">
+        <a class="nav-link" href="../registration/registration.php">Join Event</a>
+      </li>
+      </ul>
 
-          <?php endif; ?>
-        </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-fill justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="../signin/signin.php">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../signup/signup.php">Sign Up</a>
+        </li>
+      </ul>
+
+    <?php endif; ?>
       </div>
     </div>
   </nav>
@@ -220,7 +231,7 @@
           <p>
             5v5. Best of 3 Maps.
             <br />
-            9 March 2024, 1.00PM 
+            9 March 2024, 1.00PM
             <br /><br />
             Precision, teamwork, and strategy will be your keys to victory in
             our Counter Strike 2 tournament. Can you lead your team to glory
@@ -241,7 +252,7 @@
           <p>
             1v1. Ultimate Teams (UT).
             <br />
-            9 March 2024, 3.00PM 
+            9 March 2024, 3.00PM
             <br /><br />
             Lace up, compete, and be part of the football gaming history in
             our heart-pounding EAFC 24 tournament. Are you the next virtual
