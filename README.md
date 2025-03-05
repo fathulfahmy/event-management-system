@@ -11,8 +11,9 @@
 
 <!-- PROJECT LOGO -->
 <br />
+
 <div align="center">
-<h3 align="center">Event Management System</h3>
+  <h3 align="center">Event Management System</h3>
 
   <p align="center">
     A platform where users can exchange services for other services, cash, or both.
@@ -88,18 +89,18 @@ Developed a web-based system to manage multiple events. Features include landing
    ```sh
    cd event-management-system
    ```
-3. Import database schema
-   ```sh
-   mysql -u your_user -p your_database < database/schema.sql
-   ```
-4. Start server
-   ```sh
-   php -S localhost:8000
-   ```
-5. Change git remote url
+3. Change git remote url
    ```sh
    git remote set-url origin fathulfahmy/event-management-system
    git remote -v # confirm the changes
+   ```
+4. Import database schema
+   ```sh
+   mysql -u your_user -p your_database < database/schema.sql
+   ```
+5. Start server
+   ```sh
+   php -S localhost:8000
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -168,13 +169,13 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Top contributors
 
 <a href="https://github.com/fathulfahmy/event-management-system/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=fathulfahmy/event-management-system" alt="contrib.rocks image" />
 </a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
