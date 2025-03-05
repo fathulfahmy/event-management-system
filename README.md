@@ -1,66 +1,225 @@
-# Esports Tournament Management System
+<a id="readme-top"></a>
 
-## 1.0 Setup
+<!-- PROJECT SHIELDS -->
 
-1. Clone repository `git clone https://github.com/fathulfahmy/event-management.git` in `htdocs`(XAMPP) or `www`(WAMPP)
-1. Open PhpMyAdmin
-1. Import database `event-management/assets/phpmyadmin/esportsdb.sql`
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## 2.0 Testing
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<h3 align="center">Event Management System</h3>
 
-1. Start server
-1. Open `localhost/event-management/home`
+  <p align="center">
+    A platform where users can exchange services for other services, cash, or both.
+    <br />
+    <br />
+    <a href="https://github.com/fathulfahmy/event-management-system/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    &middot;
+    <a href="https://github.com/fathulfahmy/event-management-system/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
-### 2.1 Admin
+<!-- TABLE OF CONTENTS -->
 
-| Username       | Password |
-| -------------- | -------- |
-| unitenesports1 | Admin123 |
-| unitenesports2 | Admin123 |
+## Table of Contents
 
-### 2.2 Participant
+<ol>
+  <li>
+    <a href="#about-the-project">About The Project</a>
+    <ul>
+      <li><a href="#built-with">Built With</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#installation">Installation</a></li>
+    </ul>
+  </li>
+  <li><a href="#demo">Demo</a></li>
+  <li><a href="#contributing">Contributing</a></li>
+  <li><a href="#license">License</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#acknowledgments">Acknowledgments</a></li>
+</ol>
 
-| Username | Password  |
-| -------- | --------- |
-| akmal    | Akmal123  |
-| safwan   | Safwan123 |
-| musab    | Musab123  |
-| haziq    | Haziq123  |
+<!-- ABOUT THE PROJECT -->
 
-## 3.0 Screenshots
+## About The Project
 
-### 3.1 General
+![product-screenshot]
 
-![first section homepage](assets/readme/general_home.png)
-![second section homepage](assets/readme/general_home2.png)
-![third section homepage](assets/readme/general_home3.png)
+Developed a web-based system to manage multiple events. Features include landing page, user profile, event registration, user and data management admin panel. Built with PHP, HTML, and CSS for user registration website and admin website.
 
-_Homepage_
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![alt text](assets/readme/general_signin.png)
+### Built With
 
-_Sign in_
+- ![php-badge]
+- ![html-badge]
+- ![css-badge]
+- ![bootstrap-badge]
 
-![alt text](assets/readme/general_signup.png)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-_Sign up_
+<!-- GETTING STARTED -->
 
-### 3.2 Admin
+## Getting Started
 
-![alt text](assets/readme/admin_event.png)
-![alt text](assets/readme/admin_addevent.png)
+### Prerequisites
 
-_View, add, delete event_
+- PHP
+- XAMPP
+- Visual Studio Code
 
-![alt text](assets/readme/admin_participant.png)
+### Installation
 
-_View, deregister, delete participant_
+1. Clone the repository
+   ```sh
+   git clone https://github.com/fathulfahmy/event-management-system.git
+   ```
+2. Navigate to project directory
+   ```sh
+   cd event-management-system
+   ```
+3. Import database schema
+   ```sh
+   mysql -u your_user -p your_database < database/schema.sql
+   ```
+4. Start server
+   ```sh
+   php -S localhost:8000
+   ```
+5. Change git remote url
+   ```sh
+   git remote set-url origin fathulfahmy/event-management-system
+   git remote -v # confirm the changes
+   ```
 
-### 3.3 Participant
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![alt text](assets/readme/participant_event.png)
-_View, join, leave event_
+<!-- DEMO EXAMPLES -->
 
-![alt text](assets/readme/participant_profile.png)
+## Demo
 
-_Edit profile_
+<table>
+   <tr>
+      <td><img src="docs/user/splash.png" alt="screenshot"></td>
+      <td><img src="docs/user/splash2.png" alt="screenshot"></td>
+   </tr>
+   <tr>
+      <td>Splash</td>
+      <td>Splash (cont.)</td>
+   </tr>
+   <tr>
+      <td><img src="docs/user/splash3.png" alt="screenshot"></td>
+      <td><img src="docs/user/authorization.png" alt="screenshot"></td>
+   </tr>
+   <tr>
+      <td>Splash (cont.)</td>
+      <td>Authorization</td>
+   </tr>
+   <tr>
+      <td><img src="docs/user/sign_in.png" alt="screenshot"></td>
+      <td><img src="docs/user/join_event.png" alt="screenshot"></td>
+   </tr>
+   <tr>
+      <td>Sign In</td>
+      <td>Join Event</td>
+   </tr>
+   <tr>
+      <td><img src="docs/user/profile.png" alt="screenshot"></td>
+      <td><img src="docs/admin/manage_events.png" alt="screenshot"></td>
+   </tr>
+   <tr>
+      <td>Profile</td>
+      <td>Manage Events</td>
+   </tr>
+   <tr>
+      <td><img src="docs/admin/add_event.png" alt="screenshot"></td>
+      <td><img src="docs/admin/manage_participants.png" alt="screenshot"></td>
+   </tr>
+   <tr>
+      <td>Add Event</td>
+      <td>Manage Participant</td>
+   </tr>
+</table>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+3. Commit your Changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Top contributors
+
+<a href="https://github.com/fathulfahmy/event-management-system/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=fathulfahmy/event-management-system" alt="contrib.rocks image" />
+</a>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Fathul Fahmy - [@fathulfahmy](https://linkedin.com/in/fathulfahmy) - mfathulfahmy@gmail.com
+
+Project Link: [https://github.com/fathulfahmy/event-management-system](https://github.com/fathulfahmy/event-management-system)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [Bootstrap](https://getbootstrap.com/docs/4.0/examples/)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/fathulfahmy/event-management-system.svg?style=for-the-badge
+[contributors-url]: https://github.com/fathulfahmy/event-management-system/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/fathulfahmy/event-management-system.svg?style=for-the-badge
+[forks-url]: https://github.com/fathulfahmy/event-management-system/network/members
+[stars-shield]: https://img.shields.io/github/stars/fathulfahmy/event-management-system.svg?style=for-the-badge
+[stars-url]: https://github.com/fathulfahmy/event-management-system/stargazers
+[issues-shield]: https://img.shields.io/github/issues/fathulfahmy/event-management-system.svg?style=for-the-badge
+[issues-url]: https://github.com/fathulfahmy/event-management-system/issues
+[license-shield]: https://img.shields.io/github/license/fathulfahmy/event-management-system.svg?style=for-the-badge
+[license-url]: https://github.com/fathulfahmy/event-management-system/blob/main/LICENSE.md
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/fathulfahmy
+[product-screenshot]: docs/banner.png
+[php-badge]: https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white&style=for-the-badge
+[html-badge]: https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white&style=for-the-badge
+[css-badge]: https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white&style=for-the-badge
+[bootstrap-badge]: https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white&style=for-the-badge
